@@ -13,6 +13,8 @@
  */
 int main(int argc, char** argv) {
 
+    printf("Hola Mundo");
+    
     return (EXIT_SUCCESS);
 }
 
