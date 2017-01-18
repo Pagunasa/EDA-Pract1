@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin_4.x-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin_4.x-Windows
-CND_ARTIFACT_NAME_Debug=p1-email-manager
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/p1-email-manager
+CND_ARTIFACT_NAME_Debug=eda-pract1
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/eda-pract1
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin_4.x-Windows/package
-CND_PACKAGE_NAME_Debug=p1-email-manager.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/package/p1-email-manager.tar
+CND_PACKAGE_NAME_Debug=eda-pract1.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/package/eda-pract1.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin_4.x-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_4.x-Windows
-CND_ARTIFACT_NAME_Release=p1-email-manager
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_4.x-Windows/p1-email-manager
+CND_ARTIFACT_NAME_Release=eda-pract1
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_4.x-Windows/eda-pract1
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin_4.x-Windows/package
-CND_PACKAGE_NAME_Release=p1-email-manager.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin_4.x-Windows/package/p1-email-manager.tar
+CND_PACKAGE_NAME_Release=eda-pract1.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin_4.x-Windows/package/eda-pract1.tar
 #
 # include compiler specific variables
 #

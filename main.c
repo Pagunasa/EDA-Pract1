@@ -13,7 +13,7 @@
  */
 int main(int argc, char** argv) {
 
-    printf("Hola Mundo");
+    printf("Hola Mundo\n");
     
     return (EXIT_SUCCESS);
 }
