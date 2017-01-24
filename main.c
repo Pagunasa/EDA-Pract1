@@ -7,13 +7,28 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "message.h"
+//#include "messageOperations.c"
 
 /*
  * 
  */
 int main(int argc, char** argv) {
 
-    printf("Hola Mundo\n");
+    createFolder("Inbox");
+    
+    sMessage Message;
+    char c[50] = "HOLAAA QUE TAL??";
+    char d[50] = "Pagunasa";
+    
+    Message.messageID = 5;
+    strcpy(Message.subject, c);
+    strcpy(Message.sender, d);
+    
+    createMessage(Message);
+
+    
+   
     
     return (EXIT_SUCCESS);
 }

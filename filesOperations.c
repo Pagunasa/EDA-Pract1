@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void closeFile(char){}
+void closeFile(char msg){}
 
 editOptions(char newoptionsvalues){
     return "message";

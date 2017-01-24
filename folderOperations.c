@@ -6,5 +6,7 @@ char deleteFolder(char folderName[50]){
 }
 
 char createFolder(char folderName[50]){
+    mkdir(folderName,0777);
+
     return "Create Folder";
 }
