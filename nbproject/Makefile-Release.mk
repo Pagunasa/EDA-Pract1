@@ -35,7 +35,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/filesOperations.o \
+	${OBJECTDIR}/folderOperations.o \
+	${OBJECTDIR}/inputOuput.o \
+	${OBJECTDIR}/listOperations.o \
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/messageOperations.o
 
 
 # C Compiler Flags
@@ -62,10 +67,35 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/eda-pract1.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/eda-pract1 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/filesOperations.o: filesOperations.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/filesOperations.o filesOperations.c
+
+${OBJECTDIR}/folderOperations.o: folderOperations.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/folderOperations.o folderOperations.c
+
+${OBJECTDIR}/inputOuput.o: inputOuput.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/inputOuput.o inputOuput.c
+
+${OBJECTDIR}/listOperations.o: listOperations.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/listOperations.o listOperations.c
+
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+
+${OBJECTDIR}/messageOperations.o: messageOperations.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/messageOperations.o messageOperations.c
 
 # Subprojects
 .build-subprojects:
