@@ -9,5 +9,5 @@ editOptions(char newoptionsvalues){
     
 }
 OpenFile(char filename){
-return"message";
+return"message"; 
 }
