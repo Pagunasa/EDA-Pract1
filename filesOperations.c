@@ -5,9 +5,9 @@
 void closeFile(char msg){}
 
 editOptions(char newoptionsvalues){
-    return "message";
+//    return "message";
     
 }
 OpenFile(char filename){
-return"message"; 
+//return"message"; 
 }

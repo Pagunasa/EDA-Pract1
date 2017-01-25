@@ -10,12 +10,12 @@
 #ifndef MAIN_H
 #define	MAIN_H
 
-writeMenu(){
- printf("Bienvenidos a correo \n");
-printf ("Elija una opcion \n"); 
-printf("1-\t Crear Correo");
-printf("2-\t Listar Correo");
-printf("3-\t Visualizar Correo");
+writeMenu() {
+    printf("Bienvenidos a correo \n");
+    printf("Elija una opcion \n");
+    printf("1-\t Crear Correo");
+    printf("2-\t Listar Correo");
+    printf("3-\t Visualizar Correo");
 }
 
 

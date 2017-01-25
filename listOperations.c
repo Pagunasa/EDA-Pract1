@@ -2,11 +2,11 @@
 #include <stdlib.h>
 listMsgs(int folderName){
 
-return "listMsgs";
+//return "listMsgs";
 }
 
 listFolder (){
-    return"Array of folders";
+  //  return"Array of folders";
    
 }
 

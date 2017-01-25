@@ -13,7 +13,7 @@ void deleteMsg(int msgID){
     //return "Delete Message";
 }
 
-void createMessage(sMessage message){
+void createMessage(sMessage message, char folderName[MAXLENGTH18]){
     
     sprintf(name,"%i_EDA1_email.txt",message.messageID);
     
@@ -49,7 +49,7 @@ void createMessage(sMessage message){
     strcat(abs,"Inbox/");
     strcat(abs, name);
     
-    fp = fopen(abs,"wt");
+    fp = fopen(abs,"w+");
     
     printf("%s", abs);
     

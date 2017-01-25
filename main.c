@@ -12,7 +12,10 @@
 
 menu(int option) {
     switch (option) {
+
+        
         case 1:
+            createMsg();
             break;
         case 2:
             break;
@@ -38,26 +41,24 @@ menu(int option) {
     }
 }
 
+createMsg() {
+    sMessage message;
+    message = inputNewMsg();
+    createMessage(message);
+}
+
 /*
  * 
  */
 int main(int argc, char** argv) {
 
-    createFolder("Inbox");
-
-    sMessage Message;
-    char c[50] = "HOLAAA QUE TAL??";
-    char d[50] = "Pagunasa";
-
-    Message.messageID = 5;
-    strcpy(Message.subject, c);
-    strcpy(Message.sender, d);
-
-    createMessage(Message);
-
-
-
-
+    //createFolder("Inbox");
+    int option = 0;    
+    
+        writeMenu();
+        printf("Introduce Opcion: ");
+        scanf("%d",option);
+        menu(option);
 
 
     return (EXIT_SUCCESS);
