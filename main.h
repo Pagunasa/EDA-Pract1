@@ -5,19 +5,20 @@
  * Created on 24 de enero de 2017, 12:48
  */
 
+#include <stdio.h>
+#include <stdlib.h>
 #ifndef MAIN_H
 #define	MAIN_H
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
-
-
-
-
-#ifdef	__cplusplus
+writeMenu(){
+ printf("Bienvenidos a correo \n");
+printf ("Elija una opcion \n"); 
+printf("1-\t Crear Correo");
+printf("2-\t Listar Correo");
+printf("3-\t Visualizar Correo");
 }
-#endif
+
+
 
 #endif	/* MAIN_H */
 

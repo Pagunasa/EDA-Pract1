@@ -10,26 +10,56 @@
 #include "message.h"
 //#include "messageOperations.c"
 
+menu(int option) {
+    switch (option) {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        case 8:
+            break;
+        case 9:
+            break;
+        case 10:
+            break;
+        default:
+            break;
+
+    }
+}
+
 /*
  * 
  */
 int main(int argc, char** argv) {
 
     createFolder("Inbox");
-    
+
     sMessage Message;
     char c[50] = "HOLAAA QUE TAL??";
     char d[50] = "Pagunasa";
-    
+
     Message.messageID = 5;
     strcpy(Message.subject, c);
     strcpy(Message.sender, d);
-    
+
     createMessage(Message);
 
-    
-   
-    
+
+
+
+
+
     return (EXIT_SUCCESS);
 }
 
