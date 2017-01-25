@@ -41,7 +41,7 @@ menu(int option) {
     }
 }
 
-createMsg() {
+createMsg() { 
     sMessage message;
     message = inputNewMsg();
     createMessage(message);
