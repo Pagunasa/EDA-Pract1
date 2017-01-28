@@ -24,7 +24,9 @@ char myTxt[MAXLENGTH500];
 
 typedef struct{
     int messageID;
+    char to[MAXLENGTH50];
     char sender[MAXLENGTH50];
+    char text[MAXLENGTH500];
     char cc[MAXLENGTH50];
     char subject[MAXLENGTH500];
     char date[MAXLENGTH18];

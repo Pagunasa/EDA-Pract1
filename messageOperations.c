@@ -46,10 +46,10 @@ void createMessage(sMessage message, char folderName[MAXLENGTH18]){
    
     char abs[MAXLENGTH50];
     
-    strcat(abs,"Inbox/");
+    strcat(abs,"Outbox/");
     strcat(abs, name);
     
-    fp = fopen(abs,"w+");
+    fp = fopen(abs,"wt");
     
     printf("%s", abs);
     

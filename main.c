@@ -7,17 +7,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
 #include "message.h"
 //#include "messageOperations.c"
 
+void createMsg() { 
+    sMessage message;
+    inputNewMsg(message);
+}
+
 menu(int option) {
     switch (option) {
-
-        
         case 1:
             createMsg();
             break;
         case 2:
+            
             break;
         case 3:
             break;
@@ -37,14 +42,7 @@ menu(int option) {
             break;
         default:
             break;
-
     }
-}
-
-createMsg() { 
-    sMessage message;
-    message = inputNewMsg();
-    createMessage(message);
 }
 
 /*
@@ -55,11 +53,14 @@ int main(int argc, char** argv) {
     //createFolder("Inbox");
     int option = 0;    
     
+    do{
         writeMenu();
+        
         printf("Introduce Opcion: ");
-        scanf("%d",option);
-        menu(option);
+        scanf("%d",&option);
 
+        menu(option);
+    } while(option != 10);
 
     return (EXIT_SUCCESS);
 }

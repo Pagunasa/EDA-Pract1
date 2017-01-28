@@ -13,17 +13,27 @@ outputError(){
 //    return "Error";
 }
 
-sMessage inputNewMsg(){
-    sMessage message;
+void inputNewMsg(sMessage message){
+    char c[50];
+    char d[50];
+    //printf();
     
-    char c[50] = "HOLAAA QUE TAL??";
-    char d[50] = "Pagunasa";
-
     message.messageID = 5;
-    strcpy(message.subject, c);
-    strcpy(message.sender, d);
     
-    return message;
+    printf("Introduce destinatario: ");
+   // scanf("%[^\n]", message.to);
+    fgets(c, MAXLENGTH50, stdin);
+    
+    /*printf("Introduce Asunto: ");
+    scanf("%[^\n]", c);
+       
+    printf("Escriba el mensaje: ");
+    scanf("%[^\n]", message.text);
+    
+    printf("Firme con su nombre: ");
+    scanf("%[^\n]", message.sender);*/
+    
+    createMessage(message);
 }
 
 void inputString(char caracter){

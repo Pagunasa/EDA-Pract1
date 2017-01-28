@@ -1,1 +1,3 @@
-build/Debug/Cygwin-Windows/inputOuput.o: inputOuput.c
+build/Debug/Cygwin-Windows/inputOuput.o: inputOuput.c message.h
+
+message.h:
