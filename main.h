@@ -22,7 +22,8 @@ writeMenu() {
     printf("7-\t Añadir un correo a una carpeta ");
     printf("8-\t Borrar un correo de una carpeta");
     printf("9-\t Buscar en un correo una cadena de caracteres ");
-    printf("10-\t Salir");
+    printf("10-\t Salir"); 
+    
 }
 
 
