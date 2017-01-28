@@ -13,13 +13,16 @@
 writeMenu() {
     printf("Bienvenidos a correo \n");
     printf("Elija una opcion \n");
-    printf("1-\t Crear Correo");
-    printf("2-\t Listar Correo");
-    printf("3-\t Visualizar Correo");
-    printf("4-\t Borrar Correo");
-    printf("5-\t Crear Carpeta");
-    printf("6-\t  Borrar Carpeta");
-    printf("7-\t ")
+    printf("1-\t Crear correo");
+    printf("2-\t Listar correo");
+    printf("3-\t Visualizar correo");
+    printf("4-\t Borrar correo");
+    printf("5-\t Crear carpeta");
+    printf("6-\t  Borrar carpeta");
+    printf("7-\t Añadir un correo a una carpeta ");
+    printf("8-\t Borrar un correo de una carpeta");
+    printf("9-\t Buscar en un correo una cadena de caracteres ");
+    printf("10-\t Salir");
 }
 
 
