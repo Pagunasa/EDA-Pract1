@@ -13,8 +13,8 @@ void deleteMsg(int msgID){
     //return "Delete Message";
 }
 
-void createMessage(sMessage message, char folderName[MAXLENGTH18]){
-    
+void createMessage(sMessage message){
+
     sprintf(name,"%i_EDA1_email.txt",message.messageID);
     
     //strcpy(name,message.messageID);
@@ -40,7 +40,7 @@ void createMessage(sMessage message, char folderName[MAXLENGTH18]){
     strcat(myTxt, "Cc: ");
     strcat(myTxt, message.to);
     strcat(myTxt, " \n\n");
-    strcat(myTxt, message.subject);
+    strcat(myTxt, message.text);
     strcat(myTxt, " \n\n");
     strcat(myTxt, message.sender);
    
@@ -51,7 +51,7 @@ void createMessage(sMessage message, char folderName[MAXLENGTH18]){
     
     fp = fopen(abs,"wt");
     
-    printf("%s", abs);
+    //printf("%s", abs);
     
     fprintf(fp, myTxt);
     
@@ -78,6 +78,30 @@ void createMessage(sMessage message, char folderName[MAXLENGTH18]){
     //strcat(myTxt, "\n");
         
     fclose(fp);
+}
+
+void inputNewMsg(sMessage message){
+    //char c[50];
+    //char d[50];
+    //printf();
+    
+    message.messageID = 5;
+    
+   printf("Introduce destinatario: ");
+   readChain(message.to, MAXLENGTH50);
+   
+   printf("Introduce Asunto: ");
+   readChain(message.subject, MAXLENGTH500);
+
+   printf("Escriba el mensaje: ");
+   readChain(message.text, MAXLENGTH500);
+
+   printf("Firme con su nombre: ");
+   readChain(message.sender, MAXLENGTH50);
+
+   printf("Datos introducidos correctamente \n");
+   
+   createMessage(message); 
 }
 
 void moveMsg(int msgId, char folderName[50]){

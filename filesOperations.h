@@ -8,16 +8,7 @@
 #ifndef FILESOPERATIONS_H
 #define	FILESOPERATIONS_H
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
 
-
-
-
-#ifdef	__cplusplus
-}
-#endif
 
 #endif	/* FILESOPERATIONS_H */
 

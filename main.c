@@ -53,7 +53,6 @@ int main(int argc, char** argv) {
     //createFolder("Inbox");
     int option = 0; 
   
-    
     do{
         writeMenu();
         

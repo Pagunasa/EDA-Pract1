@@ -15,8 +15,8 @@
 int numMsg;
 FILE *fp;
     
-    time_t rawtime;
-    struct tm * timeinfo;
+time_t rawtime;
+struct tm * timeinfo;
 
 char name[MAXLENGTH50];
 char myTxt[MAXLENGTH500];
