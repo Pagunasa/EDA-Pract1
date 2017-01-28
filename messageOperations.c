@@ -35,10 +35,10 @@ void createMessage(sMessage message, char folderName[MAXLENGTH18]){
     strcat(myTxt, message.subject);
     strcat(myTxt, " \n");
     strcat(myTxt, "To: ");
-    strcat(myTxt, message.sender);
+    strcat(myTxt, message.to);
     strcat(myTxt, " \n");
     strcat(myTxt, "Cc: ");
-    strcat(myTxt, message.sender);
+    strcat(myTxt, message.to);
     strcat(myTxt, " \n\n");
     strcat(myTxt, message.subject);
     strcat(myTxt, " \n\n");

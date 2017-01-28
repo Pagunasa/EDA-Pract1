@@ -67,32 +67,32 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/eda-pract1.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/eda-pract1 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/filesOperations.o: filesOperations.c
+${OBJECTDIR}/filesOperations.o: filesOperations.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/filesOperations.o filesOperations.c
 
-${OBJECTDIR}/folderOperations.o: folderOperations.c
+${OBJECTDIR}/folderOperations.o: folderOperations.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/folderOperations.o folderOperations.c
 
-${OBJECTDIR}/inputOuput.o: inputOuput.c
+${OBJECTDIR}/inputOuput.o: inputOuput.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/inputOuput.o inputOuput.c
 
-${OBJECTDIR}/listOperations.o: listOperations.c
+${OBJECTDIR}/listOperations.o: listOperations.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/listOperations.o listOperations.c
 
-${OBJECTDIR}/main.o: main.c
+${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
 
-${OBJECTDIR}/messageOperations.o: messageOperations.c
+${OBJECTDIR}/messageOperations.o: messageOperations.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/messageOperations.o messageOperations.c
@@ -103,6 +103,7 @@ ${OBJECTDIR}/messageOperations.o: messageOperations.c
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/eda-pract1.exe
 
 # Subprojects
 .clean-subprojects:

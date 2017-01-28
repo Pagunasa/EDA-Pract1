@@ -51,7 +51,8 @@ menu(int option) {
 int main(int argc, char** argv) {
 
     //createFolder("Inbox");
-    int option = 0;    
+    int option = 0; 
+  
     
     do{
         writeMenu();
