@@ -1,5 +1,8 @@
-build/Debug/Cygwin-Windows/main.o: main.c main.h message.h
+build/Debug/Cygwin-Windows/main.o: main.c main.h filesOperations.h \
+ message.h
 
 main.h:
+
+filesOperations.h:
 
 message.h:

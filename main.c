@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
+#include "filesOperations.h"
 #include "message.h"
 //#include "messageOperations.c"
 
@@ -50,6 +51,10 @@ menu(int option) {
  */
 int main(int argc, char** argv) {
 
+    sOptions options;
+    
+    openOptions(options);
+    
     //createFolder("Inbox");
     int option = 0; 
   
