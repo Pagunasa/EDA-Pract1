@@ -57,7 +57,6 @@ menu(int option) {
         case 4:
             break;
         case 5:
-
             printf("Introduce el nombre de la carpeta:");
             scanf(" %s", folderName);
             createFolder(folderName);
@@ -66,8 +65,6 @@ menu(int option) {
             printf("Introduce el nombre de la carpeta:");
             scanf(" %s", folderName);
             deleteFolder(folderName);
-            
-            deleteFolder("Carpeta 1");
             break;
         case 7:
             break;

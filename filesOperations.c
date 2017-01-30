@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "message.h"
 #include "filesOperations.h"
 
@@ -17,7 +18,8 @@ void editOptions(char newoptionsvalues){
 void openOptions(sOptions options){
     char temporal[MAXLENGTH50];
    
-    int i, j;
+    int i = 0;
+    int j = 0;
     
     FILE * optionsFile;
     
@@ -29,18 +31,32 @@ void openOptions(sOptions options){
         printf("El archivo existe \n");
         
         fscanf(optionsFile, "%s %d", temporal, &options.idMessage);
-        
-        while(feof(optionsFile) == 0){
+        fscanf(optionsFile, "%s", temporal);
+
+        while(feof(optionsFile) == 0){       
+            
+            fscanf(optionsFile, "%s", options.folders[i].folderName);
             i++;
-            fscanf(optionsFile, "%s", temporal);
-            //printf("%s \n", temporal); 
-            if(i > 2){
-                fscanf(optionsFile, "%s", options.folders);
-                printf("%s \n", options.folders);  
+
+            for (int j = 0; j < i; j++){
+                 if(strcmp(options.folders[j].folderName, options.folders[i].folderName) ==  0
+                    || strcmp(options.folders[j].folderName, "Messages:") == 0){
+                    i--;
+                    printf("%s \n", options.folders[i].folderName);
+
+                    //while(feof(optionsFile) == 0){
+                    //        fscanf(optionsFile, "%s", options.folders[i].folderName);
+                    //        printf("%s \n", options.folders[i].folderName); 
+                    //    }
+                       
+                    }
+                }
             }
         }
+        
+    
     }
-}
+
 
 FILE* OpenFile(char filename[MAXLENGTH50]){
     

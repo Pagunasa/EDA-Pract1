@@ -14,12 +14,12 @@
 
 typedef struct{
     char messageName[MAXLENGTH20];
-} sMessageName;
+} sMessageName[MAXMESSAGES];
 
 typedef struct{
     char folderName[MAXLENGTH20];
     sMessageName messages;
-} sFolders;
+} sFolders[MAXFOLDERS];
 
 //typedef struct{
 //    char folderName[MAXLENGTH20];
@@ -28,7 +28,7 @@ typedef struct{
 typedef struct{
     int idMessage;
     //sFoldersName foldersName[MAXFOLDERS];
-    sFolders folders[MAXLENGTH20];
+    sFolders folders;
 } sOptions;
 
 #endif	/* FILESOPERATIONS_H */
