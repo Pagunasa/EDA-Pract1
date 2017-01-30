@@ -18,6 +18,7 @@ void createMsg() {
 }
 
 menu(int option) {
+    char folderName[MAXLENGTH50];
     switch (option) {
         case 1:
             createMsg();
@@ -30,8 +31,12 @@ menu(int option) {
         case 4:
             break;
         case 5:
+            printf("Introduce el nombre de la carpeta:");
+            scanf("%c", folderName);
+            createFolder(folderName);
             break;
         case 6:
+            deleteFolder("Carpeta 1");
             break;
         case 7:
             break;
