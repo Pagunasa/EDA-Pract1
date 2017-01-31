@@ -14,14 +14,19 @@
 #define MAXMSGFOLDER 4
 
 typedef struct{
+    char messageName[MAXLENGTH20];
+} sMessageName[MAXMESSAGES];
+
+typedef struct{
+    sMessageName messageName;
     char folderName[MAXLENGTH20];
     int posicio[MAXMSGFOLDER];
     int private;
-}sFolder; 
+}sFolder[MAXFOLDERS]; 
 
 typedef struct{
     int messageID;
-    sFolder folder[MAXFOLDERS];
+    sFolder folder;
 }sFolders;
 
 /*typedef struct{

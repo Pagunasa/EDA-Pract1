@@ -16,10 +16,14 @@ void editOptions(char newoptionsvalues){
 }
 
 void openOptions(sFolders folders){
-    char temporal[MAXLENGTH50];
-   
+    char temp1[MAXLENGTH50];
+    char temp2[MAXLENGTH50];
+    char strFinal[MAXLENGTH50];
+    char strFinal1[MAXLENGTH50];
+    
     int i = 0;
     int j = 0;
+    int e = 0;
     
     FILE * optionsFile;
     
@@ -30,25 +34,57 @@ void openOptions(sFolders folders){
     }else{
         printf("El archivo existe \n");
         
-        fscanf(optionsFile, "%s %d", temporal, &folders.messageID);
-        fscanf(optionsFile, "%s", temporal);
-        
+        fscanf(optionsFile, "%s %d", temp1, &folders.messageID);
+        fscanf(optionsFile, "%s", temp1);
+       
         while(feof(optionsFile) == 0){       
-            
             //fscanf(optionsFile, "%s", folders.folder[i].folderName);
-            fgets (folders.folder[i].folderName, MAXLENGTH50, optionsFile);
+            fgets(temp1, MAXLENGTH50, optionsFile);
+           /* i++;
+            fgets(folders.folder[i].folderName, MAXLENGTH50, optionsFile);
             printf("%s", folders.folder[i].folderName);
+            i++;*/
             
-            if (strcmp(folders.folder[i].folderName, "\r\n") == 0){
-                j = i;
-                fgets(temporal, MAXLENGTH50, optionsFile);
-                sscanf(temporal, "%s %s", temporal, temporal);
-                printf("%s", temporal);
-                for (int i = 0; i < j; i++){
-                    
+            if (strcmp(temp1, "\r\n") == 0){
+                /*j = i;
+                fgets(temp1, MAXLENGTH50, optionsFile);
+                sscanf(temp1, "%s %s", temp2, strFinal);
+                i--;
+               // printf("%s \n", temp2);
+                
+                strcpy(temp1, folders.folder[i].folderName);
+                  
+                for (int i = 0; i <= j; i++){
+                    if(strcmp(folders.folder[i].folderName, temp1) == 0){
+                        fgets(folders.folder[i].messageName[e].messageName, MAXLENGTH50, optionsFile);
+                       // fgets(folders.folder[i].messageName[e], MAXLENGTH50, optionsFile);
+                        printf("%s",folders.folder[i].messageName[e].messageName);
+                        e++;
+                    }
                 }
-            } else {                
+                
+                e = 0;*/
+                
+            } else { 
+                //printf("%s", temp1);
+                /*if (sscanf(temp1, "%s %s %s", temp2, strFinal, strFinal1)){
+                    if(strcmp(strFinal1, "Messages:") == 1){
+                         strcpy(folders.folder[i].folderName, temp1);
+                        printf("Pasando %s", folders.folder[i].folderName);
+                    } 
+                }*/
+                
+                if (strstr(temp1, "Messages:") == NULL && strstr(temp1, "End") == NULL){
+                    strcpy(folders.folder[i].folderName, temp1);
+                    //printf("Pasando %s", folders.folder[i].folderName);
+                }
                 i++;
+                
+                if(strstr(temp1, "Messages:") != NULL){
+                    sscanf(temp1, "%s", temp2);
+                    printf("%s", temp2);  
+                }
+                
             }
 
             //for (int j = 0; j < i; j++){
@@ -73,7 +109,7 @@ void openOptions(sFolders folders){
                 }*/
             }
         }
-        
+    
     printf("Load complete \n");
     
     }
