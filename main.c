@@ -20,14 +20,10 @@ void createMsg() {
  * 
  */
 int main(int argc, char** argv) {
-        
     
-
-    sOptions options;
-    
+    sFolders options[MAXFOLDERS];
     openOptions(options);
     
-    //createFolder("Inbox");
     int option = 0; 
   
     do{
@@ -43,7 +39,7 @@ int main(int argc, char** argv) {
 }
 
 menu(int option) {
-               char folderName[MAXLENGTH50];
+    char folderName[MAXLENGTH50];
 
     switch (option) {
         case 1:

@@ -15,7 +15,7 @@ void editOptions(char newoptionsvalues){
     
 }
 
-void openOptions(sOptions options){
+void openOptions(sFolders folders){
     char temporal[MAXLENGTH50];
    
     int i = 0;
@@ -30,15 +30,35 @@ void openOptions(sOptions options){
     }else{
         printf("El archivo existe \n");
         
-        fscanf(optionsFile, "%s %d", temporal, &options.idMessage);
+        fscanf(optionsFile, "%s %d", temporal, &folders.messageID);
         fscanf(optionsFile, "%s", temporal);
-
+        
         while(feof(optionsFile) == 0){       
             
-            fscanf(optionsFile, "%s", options.folders[i].folderName);
-            i++;
+            //fscanf(optionsFile, "%s", folders.folder[i].folderName);
+            fgets (folders.folder[i].folderName, MAXLENGTH50, optionsFile);
+            printf("%s", folders.folder[i].folderName);
+            
+            if (strcmp(folders.folder[i].folderName, "\r\n") == 0){
+                j = i;
+                fgets(temporal, MAXLENGTH50, optionsFile);
+                sscanf(temporal, "%s %s", temporal, temporal);
+                printf("%s", temporal);
+                for (int i = 0; i < j; i++){
+                    
+                }
+            } else {                
+                i++;
+            }
 
-            for (int j = 0; j < i; j++){
+            //for (int j = 0; j < i; j++){
+               // if(strcmp(options.folders[i].folderName, )){
+                 //   printf("Hola");
+               // }     
+           // }
+            
+            
+            /*for (int j = 0; j < i; j++){
                  if(strcmp(options.folders[j].folderName, options.folders[i].folderName) ==  0
                     || strcmp(options.folders[j].folderName, "Messages:") == 0){
                     i--;
@@ -50,10 +70,11 @@ void openOptions(sOptions options){
                     //    }
                        
                     }
-                }
+                }*/
             }
         }
         
+    printf("Load complete \n");
     
     }
 

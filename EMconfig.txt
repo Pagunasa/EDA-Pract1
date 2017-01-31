@@ -1,7 +1,6 @@
 messageID: 7
 
 
-
 Folders:
 
 Inbox
@@ -13,7 +12,6 @@ Outbox
 Inbox Messages:
 
 Mensaje_1
-
 Mensaje_4
 
 

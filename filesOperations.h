@@ -13,13 +13,16 @@
 #define MAXMESSAGES 4
 #define MAXMSGFOLDER 4
 
-typedef struct{ 
+typedef struct{
     char folderName[MAXLENGTH20];
     int posicio[MAXMSGFOLDER];
     int private;
-    sMessage;
-    
-}sfolders; 
+}sFolder; 
+
+typedef struct{
+    int messageID;
+    sFolder folder[MAXFOLDERS];
+}sFolders;
 
 /*typedef struct{
     char messageName[MAXLENGTH20];
@@ -38,7 +41,7 @@ typedef struct{
     int idMessage;
     //sFoldersName foldersName[MAXFOLDERS];
     sFolders folders;
-} sOptions;
+} sOptions;*/
 
 
 #endif	/* FILESOPERATIONS_H */

@@ -33,7 +33,13 @@ typedef struct{
 }sMessage;
 
 typedef struct{
-    sMessage RETRATADO[MAXMESSAGES];
+    sMessage messages[MAXLENGTH18];
+    int next;
+    int prev;
+}sLsMsg;
+
+typedef struct{
+    sLsMsg lsMessages[MAXLENGTH18];
     int list;
     int empty;
 }slist; 
