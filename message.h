@@ -32,5 +32,11 @@ typedef struct{
     char date[MAXLENGTH18];
 }sMessage;
 
+typedef struct{
+    sMessage RETRATADO[MAXMESSAGES];
+    int list;
+    int empty;
+}slist; 
+
 #endif	/* MESSAGE_H */
 
