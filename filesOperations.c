@@ -45,6 +45,7 @@ void openOptions(sFolders folders){
                 sscanf(temporal, "%s %s", temporal, temporal);
                 printf("%s", temporal);
                 for (int i = 0; i < j; i++){
+                    
                 }
             } else {                
                 i++;
