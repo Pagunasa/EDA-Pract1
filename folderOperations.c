@@ -17,10 +17,12 @@ char deleteFolder(char folderName[MAXLENGTH50]){
 
 char createFolder(char folderName[50]) {
     
-    printf(" %s", folderName);
-    
-    mkdir(folderName, 0777);
-    
-
-    //  return "Create Folder";
+   FILE * fp;
+  
+   fp = fopen ("EMconfig.txt", "w+");
+   fprintf(fp, "%s",folderName);
+ 
+   fclose(fp);
+   return(0); 
+   //  return "Create Folder";
 }
