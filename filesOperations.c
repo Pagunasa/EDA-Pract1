@@ -80,6 +80,7 @@ void openOptions(sFolders folders){
                             if (strstr(folders.folder[i].folderName, temp2)){
                                 folders.folder[i].messageName[j].messageName;
                             }
+                            
                         }
                     } else {
                         strcpy(folders.folder[i].folderName, temp1);
