@@ -17,7 +17,7 @@ void editOptions(char newoptionsvalues){
 
 void openOptions(sFolders folders){
     char temp1[MAXLENGTH50];
-    char temp2[MAXLENGTH50];
+    char temp2[MAXLENGTH50] = "";
     char strFinal[MAXLENGTH50];
     char strFinal1[MAXLENGTH50];
     
@@ -45,7 +45,7 @@ void openOptions(sFolders folders){
             printf("%s", folders.folder[i].folderName);
             i++;*/
             
-            if (strcmp(temp1, "\r\n") == 0){
+            if (strcmp(temp1, "\n") == 0 || strcmp(temp1, "\r\n") == 0){
                 /*j = i;
                 fgets(temp1, MAXLENGTH50, optionsFile);
                 sscanf(temp1, "%s %s", temp2, strFinal);
@@ -63,8 +63,7 @@ void openOptions(sFolders folders){
                     }
                 }
                 
-                e = 0;*/
-                
+                e = 0;*/ 
             } else { 
                 //printf("%s", temp1);
                 /*if (sscanf(temp1, "%s %s %s", temp2, strFinal, strFinal1)){
@@ -75,16 +74,23 @@ void openOptions(sFolders folders){
                 }*/
                 
                 if (strstr(temp1, "Messages:") == NULL && strstr(temp1, "End") == NULL){
-                    strcpy(folders.folder[i].folderName, temp1);
-                    //printf("Pasando %s", folders.folder[i].folderName);
+                    if(strcmp(temp2, "") != 0){
+                       j = i;
+                        for (int i = 0; i <= j; i++){
+                            if (strstr(folders.folder[i].folderName, temp2)){
+                                folders.folder[i].messageName[j].messageName;
+                            }
+                        }
+                    } else {
+                        strcpy(folders.folder[i].folderName, temp1);
+                        printf("%s", folders.folder[i].folderName);  
+                    }
+                }else if(strstr(temp1, "Messages:") != NULL){
+                    sscanf(temp1, "%s", temp2);
+                    //strcat(temp2, "\r\n");
+                    //printf("%s \n", temp2);  
                 }
                 i++;
-                
-                if(strstr(temp1, "Messages:") != NULL){
-                    sscanf(temp1, "%s", temp2);
-                    printf("%s", temp2);  
-                }
-                
             }
 
             //for (int j = 0; j < i; j++){
@@ -92,8 +98,6 @@ void openOptions(sFolders folders){
                  //   printf("Hola");
                // }     
            // }
-            
-            
             /*for (int j = 0; j < i; j++){
                  if(strcmp(options.folders[j].folderName, options.folders[i].folderName) ==  0
                     || strcmp(options.folders[j].folderName, "Messages:") == 0){
@@ -109,6 +113,13 @@ void openOptions(sFolders folders){
                 }*/
             }
         }
+    
+    for (int i = 0; i < 2; i++){
+        folders.folder[i].folderName;
+        for (int j = 0; j < 2; j++){
+           folders.folder[i].messageName[j].messageName;
+        }
+    }
     
     printf("Load complete \n");
     

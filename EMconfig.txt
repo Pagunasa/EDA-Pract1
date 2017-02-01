@@ -1,16 +1,30 @@
 messageID: 7
 
+
+
 Folders:
+
 Inbox
+
 Outbox
 
+
 Inbox Messages:
+
 Mensaje_1
+
 Mensaje_4
 
+
+
 Outbox Messages:
+
 Mensaje_2
+
 Mensaje_3
+
+
+
 
 
 End
