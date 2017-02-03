@@ -24,12 +24,12 @@ int main(int argc, char** argv) {
     sFolders folders;
     openOptions(&folders);
     
-    /*for (int i = 0; i < MAXFOLDERS; i++){
+    for (int i = 0; i < MAXFOLDERS; i++){
         printf("%s", folders.folder[i].folderName);
         for (int j = 0; j < MAXMESSAGES; j++){
             printf("%s", folders.folder[i].messageName[j].messageName);  
         }
-    }*/
+    }
     
     int option = 0; 
   

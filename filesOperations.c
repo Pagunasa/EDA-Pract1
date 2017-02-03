@@ -18,7 +18,6 @@ void editOptions(char newoptionsvalues){
 void openOptions(sFolders *folders){
     char temp1[MAXLENGTH50];
     char temp2[MAXLENGTH50] = "";
-    char tempMessages[MAXLENGTH50];
 
     int i = 0;
     int j = 0;
@@ -79,13 +78,17 @@ void openOptions(sFolders *folders){
                             if (strstr(folders->folder[i].folderName, temp2)){
                                 do{
                                     if (strcmp(temp1, "\n") == 0 || strcmp(temp1, "\r\n") == 0){
-                                        e = 1 ;
-                                        i = MAXMESSAGES;
+                                        if(strcmp(temp1, "\r\n") == 0){
+                                            e = 1 ;
+                                            i = MAXMESSAGES;          
+                                        }else{
+                                            fgets(temp1, MAXLENGTH50, optionsFile);
+                                        }
                                     }else{
                                         strcpy(folders->folder[i].messageName[j].messageName, temp1);   
                                         j++;
-                                        //printf("%s",temp1);
                                         fgets(temp1, MAXLENGTH50, optionsFile);
+                                        i = 0;
                                     }
                                 } while (e != 1);
                             }
@@ -127,7 +130,6 @@ FILE* OpenFile(char filename[MAXLENGTH50]){
     }*/
 }
 
-
  //AAQUIII IVAAA
 
             //for (int j = 0; j < i; j++){
@@ -135,9 +137,9 @@ FILE* OpenFile(char filename[MAXLENGTH50]){
                  //   printf("Hola");
                // }     
            // }
-            /*for (int j = 0; j < i; j++){
-                 if(strcmp(options.folders[j].folderName, options.folders[i].folderName) ==  0
-                    || strcmp(options.folders[j].folderName, "Messages:") == 0){
+ /*for (int j = 0; j < i; j++){
+    if(strcmp(options.folders[j].folderName, options.folders[i].folderName) ==  0
+      || strcmp(options.folders[j].folderName, "Messages:") == 0){
                     i--;
                     printf("%s \n", options.folders[i].folderName);
 
@@ -147,9 +149,8 @@ FILE* OpenFile(char filename[MAXLENGTH50]){
                     //    }
                        
                     }
-                }*/
-
-    //for (int i = 0; i < 2; i++){
+    }*/
+ //for (int i = 0; i < 2; i++){
         //printf("%s", folders->folder[i].folderName);  
    //     for (int j = 0; j < 2; j++){
             //printf("%s", folders->folder[i].messageName[j].messageName);  

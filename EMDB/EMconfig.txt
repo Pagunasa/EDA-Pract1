@@ -1,15 +1,27 @@
 messageID: 2
 
+
+
 Folders:
+
 Inbox
+
 Outbox
+
+
 
 Inbox Messages:
 1_EMemail
+
 2_EMemail
+
+
 
 Outbox Messages:
 3_EMemail
+4_EMemail
+
+
 
 
 End
