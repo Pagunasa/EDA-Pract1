@@ -15,12 +15,11 @@ void editOptions(char newoptionsvalues){
     
 }
 
-void openOptions(sFolders folders){
+void openOptions(sFolders *folders){
     char temp1[MAXLENGTH50];
     char temp2[MAXLENGTH50] = "";
-    char strFinal[MAXLENGTH50];
-    char strFinal1[MAXLENGTH50];
-    
+    char tempMessages[MAXLENGTH50];
+
     int i = 0;
     int j = 0;
     int e = 0;
@@ -34,10 +33,10 @@ void openOptions(sFolders folders){
     }else{
         printf("El archivo existe \n");
         
-        fscanf(optionsFile, "%s %d", temp1, &folders.messageID);
-        fscanf(optionsFile, "%s", temp1);
-       
-        while(feof(optionsFile) == 0){       
+       fscanf(optionsFile, " %s %d ", temp1, &folders->messageID);
+       fscanf(optionsFile, "%s", temp1);
+
+       while(feof(optionsFile) == 0){       
             //fscanf(optionsFile, "%s", folders.folder[i].folderName);
             fgets(temp1, MAXLENGTH50, optionsFile);
            /* i++;
@@ -75,16 +74,26 @@ void openOptions(sFolders folders){
                 
                 if (strstr(temp1, "Messages:") == NULL && strstr(temp1, "End") == NULL){
                     if(strcmp(temp2, "") != 0){
-                       j = i;
-                        for (int i = 0; i <= j; i++){
-                            if (strstr(folders.folder[i].folderName, temp2)){
-                                folders.folder[i].messageName[j].messageName;
+                        j = 0;
+                        for (int i = 0; i <= MAXMESSAGES; i++){
+                            if (strstr(folders->folder[i].folderName, temp2)){
+                                do{
+                                    if (strcmp(temp1, "\n") == 0 || strcmp(temp1, "\r\n") == 0){
+                                        e = 1 ;
+                                        i = MAXMESSAGES;
+                                    }else{
+                                        strcpy(folders->folder[i].messageName[j].messageName, temp1);   
+                                        j++;
+                                        //printf("%s",temp1);
+                                        fgets(temp1, MAXLENGTH50, optionsFile);
+                                    }
+                                } while (e != 1);
                             }
                             
                         }
                     } else {
-                        strcpy(folders.folder[i].folderName, temp1);
-                        printf("%s", folders.folder[i].folderName);  
+                        strcpy(folders->folder[i].folderName, temp1);
+                        //printf("%s", folders->folder[i].folderName);  
                     }
                 }else if(strstr(temp1, "Messages:") != NULL){
                     sscanf(temp1, "%s", temp2);
@@ -93,6 +102,33 @@ void openOptions(sFolders folders){
                 }
                 i++;
             }
+
+            //AAQUIII IVAAA
+            
+            }
+        }
+
+    printf("Load complete \n");
+    
+    }
+
+
+FILE* OpenFile(char filename[MAXLENGTH50]){
+    
+   /* FILE *fs;
+    
+    fs = fopen(filename,"wt");
+    
+    if (fs == NULL){ //Comprobamos si el archivo se ha abierto y en su caso negativo avisamos al usuario
+        printf("Error al abrir el fichero\n");
+        return fs;
+    } else {
+        return fs;
+    }*/
+}
+
+
+ //AAQUIII IVAAA
 
             //for (int j = 0; j < i; j++){
                // if(strcmp(options.folders[i].folderName, )){
@@ -112,31 +148,10 @@ void openOptions(sFolders folders){
                        
                     }
                 }*/
-            }
-        }
-    
-    for (int i = 0; i < 2; i++){
-        folders.folder[i].folderName;
-        for (int j = 0; j < 2; j++){
-           folders.folder[i].messageName[j].messageName;
-        }
-    }
-    
-    printf("Load complete \n");
-    
-    }
 
-
-FILE* OpenFile(char filename[MAXLENGTH50]){
-    
-   /* FILE *fs;
-    
-    fs = fopen(filename,"wt");
-    
-    if (fs == NULL){ //Comprobamos si el archivo se ha abierto y en su caso negativo avisamos al usuario
-        printf("Error al abrir el fichero\n");
-        return fs;
-    } else {
-        return fs;
-    }*/
-}
+    //for (int i = 0; i < 2; i++){
+        //printf("%s", folders->folder[i].folderName);  
+   //     for (int j = 0; j < 2; j++){
+            //printf("%s", folders->folder[i].messageName[j].messageName);  
+   //     }
+   // }

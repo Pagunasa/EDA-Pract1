@@ -15,18 +15,18 @@
 
 typedef struct{
     char messageName[MAXLENGTH20];
-} sMessageName[MAXMESSAGES];
+} sMessageName;
 
 typedef struct{
-    sMessageName messageName;
+    sMessageName messageName[MAXMESSAGES];
     char folderName[MAXLENGTH20];
     int posicio[MAXMSGFOLDER];
     int private;
-}sFolder[MAXFOLDERS]; 
+}sFolder; 
 
 typedef struct{
     int messageID;
-    sFolder folder;
+    sFolder folder[MAXFOLDERS];
 }sFolders;
 
 /*typedef struct{
