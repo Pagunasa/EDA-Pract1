@@ -26,7 +26,7 @@ void openOptions(sFolders *folders){
     
     FILE * optionsFile;
     
-    optionsFile = fopen("EMconfig.txt", "r");
+    optionsFile = fopen("EMDB/EMconfig.txt", "r");
     
     if (optionsFile == NULL){
         printf("El archivo no existe \n");
