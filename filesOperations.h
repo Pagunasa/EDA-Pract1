@@ -13,6 +13,8 @@
 #define MAXMESSAGES 4
 #define MAXMSGFOLDER 4
 
+int numFolders;
+
 typedef struct{
     char messageName[MAXLENGTH20];
 } sMessageName;
@@ -21,6 +23,7 @@ typedef struct{
     sMessageName messageName[MAXMESSAGES];
     char folderName[MAXLENGTH20];
     int posicio[MAXMSGFOLDER];
+    int numMessages;
     int private;
 }sFolder; 
 

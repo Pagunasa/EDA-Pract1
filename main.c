@@ -24,10 +24,16 @@ int main(int argc, char** argv) {
     sFolders folders;
     openOptions(&folders);
     
-    for (int i = 0; i < MAXFOLDERS; i++){
+    //saveOptions(&folders);
+    
+    addMessage(&folders, "6_EM@email.com", "Outbox\r\n");
+    
+    saveOptions(&folders);
+
+    for (int i = 0; i < numFolders; i++){
         printf("%s", folders.folder[i].folderName);
-        for (int j = 0; j < MAXMESSAGES; j++){
-            printf("%s", folders.folder[i].messageName[j].messageName);  
+        for (int j = 0; j < folders.folder[i].numMessages; j++){
+            printf("%i", folders.folder[i].numMessages);  
         }
     }
     

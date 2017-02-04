@@ -9,7 +9,7 @@
 
 #define	MESSAGE_H
 #define MAXLENGTH50 50
-#define MAXLENGTH500 500
+#define MAXLENGTH1000 1000
 #define MAXLENGTH18 18
 
 int numMsg;
@@ -19,16 +19,16 @@ time_t rawtime;
 struct tm * timeinfo;
 
 char name[MAXLENGTH50];
-char myTxt[MAXLENGTH500];
+char myTxt[MAXLENGTH1000];
 
 
 typedef struct{
     int messageID;
     char to[MAXLENGTH50];
     char sender[MAXLENGTH50];
-    char text[MAXLENGTH500];
+    char text[MAXLENGTH1000];
     char cc[MAXLENGTH50];
-    char subject[MAXLENGTH500];
+    char subject[MAXLENGTH1000];
     char date[MAXLENGTH18];
 }sMessage;
 

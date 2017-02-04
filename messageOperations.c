@@ -15,7 +15,7 @@ void deleteMsg(int msgID){
 
 void createMessage(sMessage message){
 
-    sprintf(name,"%i_EDA1_email.txt",message.messageID);
+    sprintf(name,"EMDB/%i_EDA1_email.txt",message.messageID);
     
     //strcpy(name,message.messageID);
     
@@ -91,10 +91,10 @@ void inputNewMsg(sMessage message){
    readChain(message.to, MAXLENGTH50);
    
    printf("Introduce Asunto: ");
-   readChain(message.subject, MAXLENGTH500);
+   readChain(message.subject, MAXLENGTH1000);
 
    printf("Escriba el mensaje: ");
-   readChain(message.text, MAXLENGTH500);
+   readChain(message.text, MAXLENGTH1000);
 
    printf("Firme con su nombre: ");
    readChain(message.sender, MAXLENGTH50);

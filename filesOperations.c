@@ -86,6 +86,7 @@ void openOptions(sFolders *folders){
                                         }
                                     }else{
                                         strcpy(folders->folder[i].messageName[j].messageName, temp1);   
+                                        folders->folder[i].numMessages = j + 1;
                                         j++;
                                         fgets(temp1, MAXLENGTH50, optionsFile);
                                         i = 0;
@@ -96,6 +97,7 @@ void openOptions(sFolders *folders){
                         }
                     } else {
                         strcpy(folders->folder[i].folderName, temp1);
+                        numFolders++;
                         //printf("%s", folders->folder[i].folderName);  
                     }
                 }else if(strstr(temp1, "Messages:") != NULL){
@@ -115,6 +117,44 @@ void openOptions(sFolders *folders){
     
     }
 
+
+void saveOptions(sFolders *folders){
+
+    strcat(myTxt, "\n\n");
+    strcat(myTxt, "Folders:\n");
+    for(int i=0; i < numFolders; i++){
+        strcat(myTxt, folders->folder[i].folderName);
+    }
+    strcat(myTxt, "\n");
+    for(int i=0; i < numFolders; i++){
+        strcat(myTxt, folders->folder[i].folderName);
+        for(int j=0; j <  folders->folder[i].numMessages; j++){
+            strcat(myTxt, folders->folder[i].messageName[j].messageName);
+        }
+        strcat(myTxt, "\n");
+    }
+    strcat(myTxt, "\n\n");
+    strcat(myTxt, "End");
+    
+    fp = fopen ("EMconfig.txt", "wt");
+    fprintf(fp, "messageID: %i", folders->messageID);
+    fprintf(fp, myTxt);
+    fclose(fp);
+}
+
+void addMessage(sFolders *folders, char messageName[MAXLENGTH50], 
+        char folderName[MAXLENGTH50]){
+        int j = 0;
+        for(int i=0; i < numFolders; i++){
+            /*if(strcmp(folderName, folders->folder[i].folderName) == 0){
+                j = folders->folder[i].numMessages + 1;
+                folders->folder[i].numMessages = j;
+                strcpy(folders->folder[i].messageName[j].messageName, messageName);  
+            }else{
+                printf("No existe la carpeta");
+            }*/
+        }
+}
 
 FILE* OpenFile(char filename[MAXLENGTH50]){
     
