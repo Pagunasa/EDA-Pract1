@@ -8,6 +8,7 @@
 #ifndef FILESOPERATIONS_H
 #define	FILESOPERATIONS_H
 
+#define MAXLENGTH50 50
 #define MAXLENGTH20 20
 #define MAXFOLDERS 5
 #define MAXMESSAGES 4
@@ -16,7 +17,7 @@
 int numFolders;
 
 typedef struct{
-    char messageName[MAXLENGTH20];
+    char messageName[MAXLENGTH50];
 } sMessageName;
 
 typedef struct{
