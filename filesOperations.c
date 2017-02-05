@@ -131,15 +131,25 @@ void saveOptions(sFolders *folders) {
     }
     strcat(myTxt, "\n");
     for (int i = 0; i < numFolders; i++) {
-       // eliminateJumps(folders);
+        // eliminateJumps(folders);
         strcat(temp, folders->folder[i].folderName);
         strcat(temp, " Messages: \n");
         strcat(myTxt, temp);
         strcpy(temp, "");
-        for (int j = 0; j < folders->folder[i].numMessages; j++) {
-            strcat(myTxt, folders->folder[i].messageName[j].messageName);
+        int numMsg = folders->folder[i].numMessages;
+        for (int j = 0; j < numMsg; j++) {
+            if (strcmp(folders->folder[i].messageName[j].messageName, "") != 0){
+                strcat(myTxt, folders->folder[i].messageName[j].messageName);
+                int value = 0;
+                eliminateJumpsMsg(folders, folders->folder[i].folderName);
+                //value = strlen(folders->folder[i].messageName[j].messageName) - 1;
+               // strcat(myTxt, "\n");
+            } else {
+                numMsg++;
+            }
+            
         }
-        strcat(myTxt, "\n\n");
+       strcat(myTxt, "\n\n");
     }
     strcat(myTxt, "\n\n");
     strcat(myTxt, "End");
@@ -158,8 +168,26 @@ void eliminateJumps(sFolders *folders) {
             }
         }
     }
-
 }
+
+void eliminateJumpsMsg(sFolders *folders, char folderName[MAXLENGTH50]) {
+    eliminateJumps(folders);
+    for (int i = 0; i < numFolders; i++) {
+        for (int e = 0; e < strlen(folders->folder[i].folderName); e++) {
+            if (strcmp(folderName, folders->folder[e].folderName) == 0) {
+                for (int o; o < folders->folder[e].numMessages; o++) {
+                        for (int a = 0; a < strlen(folders->folder[e].messageName[o].messageName); a++) {
+                            if (folders->folder[e].messageName[o].messageName[a] == '\n' || folders->folder[e].messageName[o].messageName[a] == '\r' 
+                                    || folders->folder[e].messageName[o].messageName[a] == ' ') {
+                                folders->folder[e].messageName[o].messageName[a] = '\0';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
 FILE* OpenFile(char filename[MAXLENGTH50]) {
 

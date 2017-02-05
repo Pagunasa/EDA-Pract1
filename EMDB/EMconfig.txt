@@ -7,19 +7,15 @@ prova
 
 Inbox Messages: 
 1_EMemail
-CAFdmR09@mail.gmail.com
-2_EMemail
-
+CAFdmR09@mail.gmail.com3_EMemail
 
 Outbox Messages: 
-3_EMemail
-4_EDA1_email.txt
-5_EDA1_email.txt
-6_EDA1_email.txt
+2
+CAFdmR09@mail.gmail.com
+
 
 prova Messages: 
-2_EMemail
-
+2_EMemail
 
 
 

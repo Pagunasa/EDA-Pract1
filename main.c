@@ -31,13 +31,15 @@ int main(int argc, char** argv) {
    
     
     saveOptions(&folders);
-
-    for (int i = 0; i < numFolders; i++){
-        printf("%s", folders.folder[i].folderName);
-        for (int j = 0; j < folders.folder[i].numMessages; j++){
-            printf("%s", folders.folder[i].messageName[j].messageName);  
-        }
-    }
+//
+//    for (int i = 0; i < numFolders; i++){
+//        printf("%s", folders.folder[i].folderName);
+//        printf("\n");
+//        for (int j = 0; j < folders.folder[i].numMessages; j++){
+//            printf("%s", folders.folder[i].messageName[j].messageName);  
+//
+//        }
+//    }
     
     int option = 0; 
   
@@ -54,7 +56,7 @@ int main(int argc, char** argv) {
 }
 
 menu(int option, sFolders folders) {
-    char folderName[MAXLENGTH50];
+    char folderName[MAXLENGTH50], messageName[MAXLENGTH50];
 
     switch (option) {
         case 1:
@@ -69,6 +71,10 @@ menu(int option, sFolders folders) {
             break;
         case 4:
             //Borrar correo
+            printf("Introduce el nombre del correo:");
+            scanf(" %s", messageName);
+            deleteMessage(&folders, messageName);
+            saveOptions(&folders);
             break;
         case 5:
             //crearCarpeta
@@ -77,7 +83,7 @@ menu(int option, sFolders folders) {
             createFolder(folderName);
             break;
         case 6:
-            //Borar carpeta
+            //Borrar carpeta
             printf("Introduce el nombre de la carpeta:");
             scanf(" %s", folderName);
             deleteFolder(folderName);
@@ -93,9 +99,11 @@ menu(int option, sFolders folders) {
             break;
         case 10:
             //salir
+            printf("Gracias por usar el programa");
             break;
         default:
             //Mensaje de que opcion mal introducida
+            printf("No existe esa opción \n");
             break;
     }
 }

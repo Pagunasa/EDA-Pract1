@@ -110,6 +110,33 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
     }
 }
 
+void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]){
+    int e = 0, numMsg;
+    eliminateJumpsMsg(folders, "Outbox");
+    for (int i = 0; i < numFolders; i++) {
+        if(strcmp("Outbox", folders->folder[i].folderName) == 0){
+            if( folders->folder[i].numMessages == 0){
+                printf("No hay mensajes en esa carpeta");
+            } else {
+                for (int j = 0; j < folders->folder[i].numMessages; j++) {
+                    if(strcmp(folders->folder[i].messageName[j].messageName, messageName) == 0){
+                        numMsg = folders->folder[i].numMessages;
+                        folders->folder[i].numMessages = numMsg - 1;
+                        strcpy(folders->folder[i].messageName[j].messageName, "");
+                        printf("El mensaje existe");
+                    }else{
+                        e++;
+                        if (e == folders->folder[i].numMessages){
+                            printf("No existe el mensaje");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 void inputNewMsg(sMessage *message, sFolders *folders, char folderName[MAXLENGTH50]) {
     //char c[50];
     //char d[50];
