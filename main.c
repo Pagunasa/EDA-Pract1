@@ -71,6 +71,17 @@ menu(int option, sFolders folders) {
             scanf(" %s", messageName);
             deleteMessage(&folders, messageName);
             saveOptions(&folders);
+            //openOptions(&folders);
+            //saveOptions(&folders);
+
+//            for (int i = 0; i < numFolders; i++){
+//                printf("%s", folders.folder[i].folderName);
+//                printf("\n");
+//                for (int j = 0; j < folders.folder[i].numMessages; j++){
+//                   printf("%s", folders.folder[i].messageName[j].messageName);  
+//
+//                }
+//            }
             break;
         case 5:
             //crearCarpeta

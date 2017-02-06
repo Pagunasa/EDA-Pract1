@@ -138,15 +138,15 @@ void saveOptions(sFolders *folders) {
         strcpy(temp, "");
         int numMsg = folders->folder[i].numMessages;
         for (int j = 0; j < numMsg; j++) {
-            if (strcmp(folders->folder[i].messageName[j].messageName, "") != 0){ //ESTA MAL NO SE GURDA COMO QUIERO
+            if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") != 0){ //ESTA MAL NO SE GURDA COMO QUIERO
                 strcat(myTxt, folders->folder[i].messageName[j].messageName);
                 int value = 0;
                 eliminateJumpsMsg(folders, folders->folder[i].folderName);
                 //value = strlen(folders->folder[i].messageName[j].messageName) - 1;
                 strcat(myTxt, "\n");
-            } else {
-                numMsg++;
-            }
+            } //else {
+              //  numMsg++;
+            //}
             
         }
        strcat(myTxt, "\n\n");

@@ -128,7 +128,7 @@ void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]){
                     if(strcmp(folders->folder[i].messageName[j].messageName, messageName) == 0){
                         numMsg = folders->folder[i].numMessages;
                         folders->folder[i].numMessages = numMsg - 1;
-                        strcpy(folders->folder[i].messageName[j].messageName, "");
+                        strcpy(folders->folder[i].messageName[j].messageName, "NULL");
                         printf("El mensaje existe, borrado correcto");
                     }else{
                         e++;
