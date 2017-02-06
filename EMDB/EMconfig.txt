@@ -1,4 +1,4 @@
-messageID: 6
+messageID: 10
 
 Folders:
 Inbox
@@ -6,16 +6,17 @@ Outbox
 prova
 
 Inbox Messages: 
-1_EMemail
-CAFdmR09@mail.gmail.com3_EMemail
+3
+
 
 Outbox Messages: 
 2
-CAFdmR09@mail.gmail.com
+CAFdmR09@mail.gmail.com
 
 
 prova Messages: 
-2_EMemail
+2_EMemail
+
 
 
 

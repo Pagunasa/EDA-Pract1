@@ -21,15 +21,11 @@ void createMsg(sFolders folders) {
  * 
  */
 int main(int argc, char** argv) {
-    
     sFolders folders;
     openOptions(&folders);
-    
-    //saveOptions(&folders);
-//    addMessage(&folders, "6_EMemail", "Outbox");
-
-   
-    
+//saveOptions(&folders);
+//addMessage(&folders, "6_EMemail", "Outbox"); 
+    saveOptions(&folders);
     saveOptions(&folders);
 //
 //    for (int i = 0; i < numFolders; i++){
@@ -100,6 +96,7 @@ menu(int option, sFolders folders) {
         case 10:
             //salir
             printf("Gracias por usar el programa");
+            saveOptions(&folders);
             break;
         default:
             //Mensaje de que opcion mal introducida

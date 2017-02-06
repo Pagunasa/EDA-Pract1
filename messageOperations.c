@@ -94,10 +94,16 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
             if( folders->folder[i].numMessages == MAXMESSAGES){
                 printf("Numero màximo de mensajes excedido en esta carpeta (%i)", MAXMESSAGES);
             }else{
-                 j = folders->folder[i].numMessages;
+                j = folders->folder[i].numMessages;
                 folders->folder[i].numMessages = j + 1;
 //                strcat(messageName, "/n");
-                strcpy(folders->folder[i].messageName[j].messageName, messageName);
+                //for (int e= 0; e <= folders->folder[i].numMessages; e++){
+                   // if(strcmp("", folders->folder[i].messageName[e].messageName) == 0){
+                   //     strcpy(folders->folder[i].messageName[e].messageName, messageName);
+                   // } else if (e == folders->folder[i].numMessages){
+                        strcpy(folders->folder[i].messageName[j].messageName, messageName);
+                   // }
+                //}
                 folders->messageID = folders->messageID + 1;
                 break;
             }
@@ -123,7 +129,7 @@ void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]){
                         numMsg = folders->folder[i].numMessages;
                         folders->folder[i].numMessages = numMsg - 1;
                         strcpy(folders->folder[i].messageName[j].messageName, "");
-                        printf("El mensaje existe");
+                        printf("El mensaje existe, borrado correcto");
                     }else{
                         e++;
                         if (e == folders->folder[i].numMessages){
