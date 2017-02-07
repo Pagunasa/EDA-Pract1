@@ -74,14 +74,15 @@ menu(int option, sFolders folders) {
             //openOptions(&folders);
             //saveOptions(&folders);
 
-//            for (int i = 0; i < numFolders; i++){
-//                printf("%s", folders.folder[i].folderName);
-//                printf("\n");
-//                for (int j = 0; j < folders.folder[i].numMessages; j++){
-//                   printf("%s", folders.folder[i].messageName[j].messageName);  
-//
-//                }
-//            }
+            for (int i = 0; i < numFolders; i++){
+                printf("%s", folders.folder[i].folderName);
+                printf("\n");
+                printf("%i", folders.folder[i].numMessages);
+                for (int j = 0; j < folders.folder[i].numMessages; j++){
+                   printf("%s", folders.folder[i].messageName[j].messageName); 
+                   printf("\n");
+                }
+            }
             break;
         case 5:
             //crearCarpeta
