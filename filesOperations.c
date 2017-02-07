@@ -170,18 +170,18 @@ void eliminateJumps(sFolders *folders) {
 void eliminateJumpsMsg(sFolders *folders, char folderName[MAXLENGTH50]) {
     eliminateJumps(folders);
     for (int i = 0; i < numFolders; i++) {
-        for (int e = 0; e < strlen(folders->folder[i].folderName); e++) {
-            if (strcmp(folderName, folders->folder[e].folderName) == 0) {
-                for (int o; o < folders->folder[e].numMessages; o++) {
-                        for (int a = 0; a < strlen(folders->folder[e].messageName[o].messageName); a++) {
-                            if (folders->folder[e].messageName[o].messageName[a] == '\n' || folders->folder[e].messageName[o].messageName[a] == '\r' 
-                                    || folders->folder[e].messageName[o].messageName[a] == ' ') {
-                                folders->folder[e].messageName[o].messageName[a] = '\0';
+        //for (int e = 0; e < strlen(folders->folder[i].folderName); e++) {
+            if (strcmp(folderName, folders->folder[i].folderName) == 0) {
+                for (int o = 0; o < folders->folder[i].numMessages; o++) {
+                        for (int a = 0; a < strlen(folders->folder[i].messageName[o].messageName); a++) {
+                            if (folders->folder[i].messageName[o].messageName[a] == '\n' || folders->folder[i].messageName[o].messageName[a] == '\r' 
+                                    || folders->folder[i].messageName[o].messageName[a] == ' ') {
+                                folders->folder[i].messageName[o].messageName[a] = '\0';
                             }
                         }
                     }
                 }
-            }
+            //}
         }
     }
 

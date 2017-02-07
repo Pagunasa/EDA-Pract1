@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
 //
 //        }
 //    }
-    
+ 
     int option = 0; 
   
     do{
@@ -98,7 +98,12 @@ menu(int option, sFolders *folders) {
             //crearCarpeta
             printf("Introduce el nombre de la carpeta:");
             scanf(" %s", folderName);
-            createFolder(folderName);
+            createFolder(folderName, folders);
+           
+            for (int i = 0; i < numFolders-1; i++){
+                eliminateJumpsMsg(folders, folders->folder[i].folderName);
+            }
+            
             saveOptions(folders);
             break;
         case 6:
@@ -119,7 +124,7 @@ menu(int option, sFolders *folders) {
         case 10:
             //salir
             printf("Gracias por usar el programa");
-            saveOptions(&folders);
+            saveOptions(folders);
             break;
         default:
             //Mensaje de que opcion mal introducida

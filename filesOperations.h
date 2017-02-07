@@ -10,7 +10,7 @@
 
 #define MAXLENGTH50 50
 #define MAXLENGTH20 20
-#define MAXFOLDERS 5
+#define MAXFOLDERS 4
 #define MAXMESSAGES 4
 #define MAXMSGFOLDER 4
 #define TRUE 0
@@ -32,6 +32,7 @@ typedef struct{
 
 typedef struct{
     int messageID;
+    int numFolders;
     sFolder folder[MAXFOLDERS];
 }sFolders;
 
