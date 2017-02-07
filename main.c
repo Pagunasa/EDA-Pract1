@@ -21,12 +21,17 @@ void createMsg(sFolders *folders) {
  * 
  */
 int main(int argc, char** argv) {
+    
     sFolders folders;
     openOptions(&folders);
 //saveOptions(&folders);
 //addMessage(&folders, "6_EMemail", "Outbox"); 
-    saveOptions(&folders);
-    saveOptions(&folders);
+   // for (int i = 0; i < numFolders; i++){
+  //      eliminateJumpsMsg(&folders, folders.folder[i].folderName);
+  //  }
+    
+  //  saveOptions(&folders);
+    //saveOptions(&folders);
 //
 //    for (int i = 0; i < numFolders; i++){
 //        printf("%s", folders.folder[i].folderName);
@@ -70,6 +75,9 @@ menu(int option, sFolders *folders) {
             printf("Introduce el nombre del correo:");
             scanf(" %s", messageName);
             deleteMessage(folders, messageName);
+            for (int i = 0; i < numFolders; i++){
+                eliminateJumpsMsg(&folders, folders.folder[i].folderName);
+            }
             saveOptions(folders);
             //openOptions(&folders);
             //saveOptions(&folders);

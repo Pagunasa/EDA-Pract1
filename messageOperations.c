@@ -15,9 +15,11 @@ void deleteMsg(int msgID) {
 
 void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *folders) {
 
+    char nameNtxt[MAXLENGTH50];
     strcpy(myTxt, "");
     
     sprintf(name, "%i_EDA1_email.txt", message->messageID);
+    sprintf(nameNtxt, "%i_EDA1_email", message->messageID);
     
     //strcpy(name,message.messageID);
 
@@ -81,7 +83,7 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
 
     fclose(fp);
     
-    addMessage(folders, name, folderName);
+    addMessage(folders, nameNtxt, folderName);
         
 }
 
@@ -114,6 +116,8 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
             }
         }
     }
+    
+    //eliminateJumpsMsg(folders, folderName);
 }
 
 void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]){
@@ -124,13 +128,18 @@ void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]){
             if( folders->folder[i].numMessages == 0){
                 printf("No hay mensajes en esa carpeta");
             } else {
-                for (int j = 0; j < folders->folder[i].numMessages; j++) {
+                int numMsg = folders->folder[i].numMessages;
+                for (int j = 0; j < numMsg; j++) {
                     if(strcmp(folders->folder[i].messageName[j].messageName, messageName) == 0){
                         numMsg = folders->folder[i].numMessages;
                         folders->folder[i].numMessages = numMsg - 1;
                         strcpy(folders->folder[i].messageName[j].messageName, "NULL");
                         printf("El mensaje existe, borrado correcto");
                     }else{
+                        if(strcmp(folders->folder[i].messageName[j].messageName, "NULL") == 0){
+                            numMsg++;
+                            e--;
+                        }
                         e++;
                         if (e == folders->folder[i].numMessages){
                             printf("No existe el mensaje");

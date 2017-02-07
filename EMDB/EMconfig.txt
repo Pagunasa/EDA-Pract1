@@ -1,21 +1,20 @@
-messageID: 10
+messageID: 4
 
 Folders:
 Inbox
 Outbox
-prova
 
 Inbox Messages: 
-3
+4
+
+2
+
+5
+
 
 
 Outbox Messages: 
 3
-2
-1
-
-prova Messages: 
-2_EMemail
 
 
 
