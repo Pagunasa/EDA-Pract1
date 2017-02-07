@@ -12,10 +12,10 @@
 #include "message.h"
 
 
-void createMsg(sFolders folders) { 
+void createMsg(sFolders *folders) { 
     sMessage message;
-    inputNewMsg(&message, &folders, "Outbox");
-    saveOptions(&folders);
+    inputNewMsg(&message, folders, "Outbox");
+    saveOptions(folders);
 }
 /*
  * 
@@ -45,13 +45,13 @@ int main(int argc, char** argv) {
         printf("Introduce Opcion: ");
         scanf("%d",&option);
 
-        menu(option, folders);
+        menu(option, &folders);
     } while(option != 10);
 
     return (EXIT_SUCCESS);
 }
 
-menu(int option, sFolders folders) {
+menu(int option, sFolders *folders) {
     char folderName[MAXLENGTH50], messageName[MAXLENGTH50];
 
     switch (option) {
@@ -69,20 +69,20 @@ menu(int option, sFolders folders) {
             //Borrar correo
             printf("Introduce el nombre del correo:");
             scanf(" %s", messageName);
-            deleteMessage(&folders, messageName);
-            saveOptions(&folders);
+            deleteMessage(folders, messageName);
+            saveOptions(folders);
             //openOptions(&folders);
             //saveOptions(&folders);
 
-            for (int i = 0; i < numFolders; i++){
-                printf("%s", folders.folder[i].folderName);
-                printf("\n");
-                printf("%i", folders.folder[i].numMessages);
-                for (int j = 0; j < folders.folder[i].numMessages; j++){
-                   printf("%s", folders.folder[i].messageName[j].messageName); 
-                   printf("\n");
-                }
-            }
+//            for (int i = 0; i < numFolders; i++){
+//                printf("%s", folders->folder[i].folderName);
+//                printf("\n");
+//                printf("%i", folders->folder[i].numMessages);
+//                for (int j = 0; j < folders->folder[i].numMessages; j++){
+//                   printf("%s", folders->folder[i].messageName[j].messageName); 
+//                   printf("\n");
+//                }
+//            }
             break;
         case 5:
             //crearCarpeta
