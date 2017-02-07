@@ -5,18 +5,15 @@ Inbox
 Outbox
 
 Inbox Messages: 
-4
-
-2
-
+4
+2
 5
-
 
 
 Outbox Messages: 
 3
-
-
+1
+5
 
 
 End

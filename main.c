@@ -75,9 +75,11 @@ menu(int option, sFolders *folders) {
             printf("Introduce el nombre del correo:");
             scanf(" %s", messageName);
             deleteMessage(folders, messageName);
+            
             for (int i = 0; i < numFolders; i++){
                 eliminateJumpsMsg(&folders, folders.folder[i].folderName);
             }
+            
             saveOptions(folders);
             //openOptions(&folders);
             //saveOptions(&folders);
