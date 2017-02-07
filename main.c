@@ -77,7 +77,7 @@ menu(int option, sFolders *folders) {
             deleteMessage(folders, messageName);
             
             for (int i = 0; i < numFolders; i++){
-                eliminateJumpsMsg(&folders, folders.folder[i].folderName);
+                eliminateJumpsMsg(folders, folders->folder[i].folderName);
             }
             
             saveOptions(folders);
@@ -99,6 +99,7 @@ menu(int option, sFolders *folders) {
             printf("Introduce el nombre de la carpeta:");
             scanf(" %s", folderName);
             createFolder(folderName);
+            saveOptions(folders);
             break;
         case 6:
             //Borrar carpeta

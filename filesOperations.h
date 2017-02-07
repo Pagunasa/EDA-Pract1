@@ -13,6 +13,8 @@
 #define MAXFOLDERS 5
 #define MAXMESSAGES 4
 #define MAXMSGFOLDER 4
+#define TRUE 0
+#define FALSE 1
 
 int numFolders;
 

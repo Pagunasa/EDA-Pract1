@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "message.h"
+#include "filesOperations.h"
+#include <string.h>
 
 
 char deleteFolder(char folderName[MAXLENGTH50]){
@@ -15,14 +17,21 @@ char deleteFolder(char folderName[MAXLENGTH50]){
 //    return "Delete Folder";
 
 
-char createFolder(char folderName[50]) {
+char createFolder(char folderName[MAXLENGTH50], sFolders *folders) {
     
-   FILE * fp;
+   /*FILE * fp;
   
    fp = fopen ("EMconfig.txt", "w+");
-   fprintf(fp, "%s",folderName);
+   fprintf(fp, "%s",folderName);*/
+   
+  
+   //printf("%s",folders->folder[numFolders].folderName);
+   strcpy(folders->folder[numFolders].folderName, folderName); 
+   
+   numFolders++;
+   folders->folder[numFolders].private = FALSE;
  
-   fclose(fp);
-   return(0); 
+//   fclose(fp);
+//   return(0); 
    //  return "Create Folder";
 }
