@@ -91,7 +91,7 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
     char folderName[MAXLENGTH50]) {
 
     int j = 0;
-    for (int i = 0; i < numFolders; i++) {
+    for (int i = 0; i < folders->numFolders; i++) {
         if(strcmp(folderName, folders->folder[i].folderName) == 0){
             if( folders->folder[i].numMessages == MAXMESSAGES){
                 printf("Numero màximo de mensajes excedido en esta carpeta (%i)", MAXMESSAGES);
@@ -110,7 +110,7 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
                 break;
             }
         }else{
-            if (i == numFolders - 1){
+            if (i == folders->numFolders - 1){
                 printf("No existe la carpeta");
                 break;
             }
@@ -123,7 +123,7 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
 void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]){
     int e = 0, numMsg;
     eliminateJumpsMsg(folders, "Outbox");
-    for (int i = 0; i < numFolders; i++) {
+    for (int i = 0; i < folders->numFolders; i++) {
         if(strcmp("Outbox", folders->folder[i].folderName) == 0){
             if( folders->folder[i].numMessages == 0){
                 printf("No hay mensajes en esa carpeta");

@@ -1,4 +1,4 @@
-messageID: 4
+messageID: 11
 
 Folders:
 Inbox
@@ -6,13 +6,11 @@ Outbox
 
 Inbox Messages: 
 4
-2
 
 
 Outbox Messages: 
-3
-1
-5
+
+
 
 
 End

@@ -33,7 +33,7 @@ void openOptions(sFolders *folders) {
 
         fscanf(optionsFile, " %s %d ", temp1, &folders->messageID);
         fscanf(optionsFile, "%s", temp1);
-
+        folders->numFolders = 0;
         while (feof(optionsFile) == 0) {
             //fscanf(optionsFile, "%s", folders.folder[i].folderName);
             fgets(temp1, MAXLENGTH50, optionsFile);
@@ -96,8 +96,11 @@ void openOptions(sFolders *folders) {
                         }
                     } else {
                         strcpy(folders->folder[i].folderName, temp1);
-                        numFolders++;
-                        eliminateJumps(folders);
+                        folders->folder[i].numMessages = 0;
+                        folders->numFolders++;
+                        eliminateJumps(folders);   
+                        
+                        
                         //printf("%s", folders->folder[i].folderName);  
                     }
                 } else if (strstr(temp1, "Messages:") != NULL) {
@@ -125,12 +128,12 @@ void saveOptions(sFolders *folders) {
 
     strcat(myTxt, "\n\n");
     strcat(myTxt, "Folders:\n");
-    for (int i = 0; i < numFolders; i++) {
+    for (int i = 0; i < folders->numFolders; i++) {
         strcat(myTxt, folders->folder[i].folderName);
         strcat(myTxt, "\n");
     }
     strcat(myTxt, "\n");
-    for (int i = 0; i < numFolders; i++) {
+    for (int i = 0; i < folders->numFolders; i++) {
         // eliminateJumps(folders);
         strcat(temp, folders->folder[i].folderName);
         strcat(temp, " Messages: \n");
@@ -138,15 +141,14 @@ void saveOptions(sFolders *folders) {
         strcpy(temp, "");
         int numMsg = folders->folder[i].numMessages;
         for (int j = 0; j < numMsg; j++) {
-            if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") != 0){ //ESTA BIEN CREO
+            if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") != 0) { //ESTA BIEN CREO
                 strcat(myTxt, folders->folder[i].messageName[j].messageName);
                 strcat(myTxt, "\n");
             } else if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") == 0) { //  ESTO NSE PUEDE QUITAR
                 numMsg++;
             }
-            
         }
-       strcat(myTxt, "\n\n");
+        strcat(myTxt, "\n\n");
     }
     strcat(myTxt, "\n\n");
     strcat(myTxt, "End");
@@ -158,7 +160,7 @@ void saveOptions(sFolders *folders) {
 }
 
 void eliminateJumps(sFolders *folders) {
-    for (int i = 0; i < numFolders; i++) {
+    for (int i = 0; i < folders->numFolders; i++) {
         for (int e = 0; e < strlen(folders->folder[i].folderName); e++) {
             if (folders->folder[i].folderName[e] == '\n' || folders->folder[i].folderName[e] == '\r') {
                 folders->folder[i].folderName[e] = '\0';
@@ -169,22 +171,21 @@ void eliminateJumps(sFolders *folders) {
 
 void eliminateJumpsMsg(sFolders *folders, char folderName[MAXLENGTH50]) {
     eliminateJumps(folders);
-    for (int i = 0; i < numFolders; i++) {
+    for (int i = 0; i < folders->numFolders; i++) {
         //for (int e = 0; e < strlen(folders->folder[i].folderName); e++) {
-            if (strcmp(folderName, folders->folder[i].folderName) == 0) {
-                for (int o = 0; o < folders->folder[i].numMessages; o++) {
-                        for (int a = 0; a < strlen(folders->folder[i].messageName[o].messageName); a++) {
-                            if (folders->folder[i].messageName[o].messageName[a] == '\n' || folders->folder[i].messageName[o].messageName[a] == '\r' 
-                                    || folders->folder[i].messageName[o].messageName[a] == ' ') {
-                                folders->folder[i].messageName[o].messageName[a] = '\0';
-                            }
-                        }
+        if (strcmp(folderName, folders->folder[i].folderName) == 0) {
+            for (int o = 0; o < folders->folder[i].numMessages; o++) {
+                for (int a = 0; a < strlen(folders->folder[i].messageName[o].messageName); a++) {
+                    if (folders->folder[i].messageName[o].messageName[a] == '\n' || folders->folder[i].messageName[o].messageName[a] == '\r'
+                            || folders->folder[i].messageName[o].messageName[a] == ' ') {
+                        folders->folder[i].messageName[o].messageName[a] = '\0';
                     }
                 }
-            //}
+            }
         }
+        //}
     }
-
+}
 
 FILE* OpenFile(char filename[MAXLENGTH50]) {
 
