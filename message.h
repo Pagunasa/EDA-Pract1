@@ -24,25 +24,26 @@ char myTxt[MAXLENGTH1000];
 
 typedef struct{
     int messageID;
+    char messageName[MAXLENGTH50];
     char to[MAXLENGTH50];
     char sender[MAXLENGTH50];
-    char text[MAXLENGTH1000];
+    char body[MAXLENGTH1000];
     char cc[MAXLENGTH50];
     char subject[MAXLENGTH1000];
     char date[MAXLENGTH18];
 }sMessage;
 
 typedef struct{
-    sMessage messages[MAXLENGTH18];
+    sMessage messages;
     int next;
     int prev;
 }sLsMsg;
 
 typedef struct{
     sLsMsg lsMessages[MAXLENGTH18];
-    int list;
+    int first;
     int empty;
-}slist; 
+}sList; 
 
 #endif	/* MESSAGE_H */
 

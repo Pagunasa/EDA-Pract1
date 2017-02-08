@@ -13,6 +13,30 @@ void deleteMsg(int msgID) {
     //return "Delete Message";
 }
 
+void chargeMessages(sList *msgList, sFolders *folders){
+    FILE * message;
+    char temp[MAXLENGTH1000];
+    msgList->empty = 0;
+    msgList->first = -1;
+    for (int i = 0; i < folders->numFolders; i++) {
+        for (int j = 0; j < folders->folder[i].numMessages; j++) { 
+        message = fopen( folders->folder[i].messageName[j].messageName , "r");
+        
+        while (feof(message) == 0) {
+            fscanf(temp, message);
+            //fgets(temp, MAXLENGTH50, message);
+            if(strcmp(temp, "Date:")){
+                
+                strcpy(msgList->lsMessages[j].messages.date, temp);
+            }
+        }
+
+        
+        fclose(message);
+        }
+    }
+}
+
 void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *folders) {
 
     char nameNtxt[MAXLENGTH50];
@@ -44,7 +68,7 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
     strcat(myTxt, "Cc: ");
     strcat(myTxt, message->to);
     strcat(myTxt, " \n\n");
-    strcat(myTxt, message->text);
+    strcat(myTxt, message->body);
     strcat(myTxt, " \n\n");
     strcat(myTxt, message->sender);
 
@@ -112,7 +136,6 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
         }else{
             if (i == folders->numFolders - 1){
                 printf("No existe la carpeta");
-                break;
             }
         }
     }
@@ -143,7 +166,6 @@ void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]){
                         e++;
                         if (e == folders->folder[i].numMessages){
                             printf("No existe el mensaje");
-                            break;
                         }
                     }
                 }
@@ -166,7 +188,7 @@ void inputNewMsg(sMessage *message, sFolders *folders, char folderName[MAXLENGTH
     readChain(message->subject, MAXLENGTH1000);
 
     printf("Escriba el mensaje: ");
-    readChain(message->text, MAXLENGTH1000);
+    readChain(message->body, MAXLENGTH1000);
 
     printf("Firme con su nombre: ");
     readChain(message->sender, MAXLENGTH50);

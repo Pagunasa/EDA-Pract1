@@ -6,10 +6,11 @@
 
 void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders) {
     int confirmation;
-    int pass = 1;
+    int pass = 1, exists = 0;
     
     for (int i = 0; i < folders->numFolders; i++) {
         if (strcmp(folderName, folders->folder[i].folderName) == 0) {
+            exists = 1;
             if (folders->folder[i].private == TRUE) {
                 printf("Carpeta privada no se puede borrar!!!\n");
             } else {
@@ -24,15 +25,13 @@ void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders) {
                 };
                 if (confirmation == 1) {
                     printf("Carpeta borrada \n");
-                    break;
                 } else {
                     printf("Carpeta no borrada \n");
-                    break;
                 }
             }
             //folders->folder[i].folderName
         } else {
-            if (i == folders->numFolders-1) {
+            if (i == folders->numFolders-1 && exists == 0) {
                 printf("No existe esa carpeta!!! \n");
             }
         }
