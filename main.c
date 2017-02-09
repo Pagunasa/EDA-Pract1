@@ -70,11 +70,15 @@ void createFolderMain(sFolders *folders) {
  * 
  */
 int main(int argc, char** argv) {
-
+    
     sFolders folders;
+    sList msgList;
+    
     openOptions(&folders);
     eliminateJumps(&folders);
+    jumpsInMsgOut(&folders);
     setPrivateOPublic(&folders);
+    chargeMessages(&msgList, &folders);
     //saveOptions(&folders);
     //addMessage(&folders, "6_EMemail", "Outbox"); 
     // for (int i = 0; i < numFolders; i++){

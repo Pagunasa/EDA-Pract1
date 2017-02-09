@@ -21,6 +21,13 @@ struct tm * timeinfo;
 char name[MAXLENGTH50];
 char myTxt[MAXLENGTH1000];
 
+typedef struct{
+    char day[MAXLENGTH18];
+    char month[MAXLENGTH18];
+    char nDay[MAXLENGTH18];
+    char hour[MAXLENGTH18];
+    char year[MAXLENGTH18];
+}sDateTime;
 
 typedef struct{
     int messageID;
@@ -30,7 +37,7 @@ typedef struct{
     char body[MAXLENGTH1000];
     char cc[MAXLENGTH50];
     char subject[MAXLENGTH1000];
-    char date[MAXLENGTH18];
+    sDateTime date;
 }sMessage;
 
 typedef struct{
