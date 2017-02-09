@@ -91,6 +91,7 @@ int main(int argc, char** argv) {
     
     inicializeList(&msgList);
     chargeMessages(&msgList, &folders);
+    
 //    
 //    printf("Empty: %i\n", msgList.empty);
     
