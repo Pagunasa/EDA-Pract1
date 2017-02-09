@@ -4,6 +4,7 @@
 #include <string.h>
 #include "message.h"
 #include "filesOperations.h"
+#include "errors.h"
 
 void closeFile(FILE fp) {
     //fclose(fp);
@@ -27,9 +28,9 @@ void openOptions(sFolders *folders) {
     optionsFile = fopen("EMDB/EMconfig.txt", "r");
 
     if (optionsFile == NULL) {
-        printf("El archivo no existe \n");
+        printf(COLOR_RED "El archivo no existe \n" COLOR_RESET);
     } else {
-        printf("El archivo existe \n");
+        printf(COLOR_GREEN "El archivo existe \n" COLOR_RESET);
 
         fscanf(optionsFile, " %s %d ", temp1, &folders->messageID);
         fscanf(optionsFile, "%s", temp1);
@@ -73,6 +74,7 @@ void openOptions(sFolders *folders) {
                 if (strstr(temp1, "Messages:") == NULL && strstr(temp1, "End") == NULL) {
                     if (strcmp(temp2, "") != 0) {
                         j = 0;
+                        eliminateJumps(folders);
                         for (int i = 0; i <= MAXMESSAGES; i++) {
                             if (strcmp(folders->folder[i].folderName, temp2) == 0) {
                                 do {
@@ -90,6 +92,7 @@ void openOptions(sFolders *folders) {
                                         fgets(temp1, MAXLENGTH50, optionsFile);
                                         i = 0;
                                     }
+                                   
                                 } while (e != 1);
                             }
 
@@ -98,7 +101,7 @@ void openOptions(sFolders *folders) {
                         strcpy(folders->folder[i].folderName, temp1);
                         folders->folder[i].numMessages = 0;
                         folders->numFolders++;
-                        eliminateJumps(folders);   
+                        //eliminateJumps(folders);   
                         
                         
                         //printf("%s", folders->folder[i].folderName);  
@@ -116,7 +119,7 @@ void openOptions(sFolders *folders) {
         }
     }
 
-    printf("Load complete \n");
+    printf(COLOR_GREEN "Load complete \n" COLOR_RESET);
 
 }
 

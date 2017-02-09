@@ -17,16 +17,30 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
     FILE * message;
     char temp[MAXLENGTH1000];
     char day[MAXLENGTH18], nDay[MAXLENGTH18], month[MAXLENGTH18], hour[MAXLENGTH18], year[MAXLENGTH18];
-    msgList->empty = 0;
-    msgList->first = -1;
+    int pos = 0;
+    int fristMsg;
+
     for (int i = 0; i < folders->numFolders; i++) {
         for (int j = 0; j < folders->folder[i].numMessages; j++) {
 
             char messageName[MAXLENGTH50];
-            strcpy(messageName,"");
+            strcpy(messageName, "");
             sprintf(messageName, "EMDB/%s.txt", folders->folder[i].messageName[j].messageName);
 
             message = fopen(messageName, "r");
+
+            fristMsg = msgList->first;
+            msgList->empty = msgList->lsMessages[pos].next;
+            msgList->first = msgList->lsMessages[pos + 1].prev;
+            if (pos == 0) {
+                msgList->lsMessages[pos + 1].prev = msgList->lsMessages[pos].prev;
+                msgList->lsMessages[pos].next = -1;
+            } else {
+                msgList->lsMessages[pos].next = -1;
+                msgList->lsMessages[pos - 1].next = pos;
+                msgList->lsMessages[pos].prev = msgList->first - 1;
+                msgList->lsMessages[pos + 1].prev = -1;
+            }
 
             while (feof(message) == 0) {
                 fscanf(message, "%s", temp);
@@ -38,27 +52,30 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
                     fscanf(message, "%s", hour);
                     fscanf(message, "%s", year);
 
-                    strcpy(msgList->lsMessages[j].messages.date.day, day);
-                    strcpy(msgList->lsMessages[j].messages.date.month, month);
-                    strcpy(msgList->lsMessages[j].messages.date.nDay, nDay);
-                    strcpy(msgList->lsMessages[j].messages.date.hour, hour);
-                    strcpy(msgList->lsMessages[j].messages.date.year, year);
-                } else if (strcmp(temp, "Message-ID:") == 0) {;
+                    strcpy(msgList->lsMessages[pos].messages.date.day, day);
+                    strcpy(msgList->lsMessages[pos].messages.date.month, month);
+                    strcpy(msgList->lsMessages[pos].messages.date.nDay, nDay);
+                    strcpy(msgList->lsMessages[pos].messages.date.hour, hour);
+                    strcpy(msgList->lsMessages[pos].messages.date.year, year);
+                } else if (strcmp(temp, "Message-ID:") == 0) {
+                    ;
                     fscanf(message, "%s", temp);
-                    strcpy(msgList->lsMessages[j].messages.messageName, temp);
+                    strcpy(msgList->lsMessages[pos].messages.messageName, temp);
                     //strcpy(msgList->lsMessages[j].messages.messageID, temp);
                 } else if (strcmp(temp, "Subject:") == 0) {
                     fscanf(message, "%s", temp);
-                    strcpy(msgList->lsMessages[j].messages.subject, temp);
+                    strcpy(msgList->lsMessages[pos].messages.subject, temp);
                 } else if (strcmp(temp, "To:") == 0) {
                     fscanf(message, "%s", temp);
-                    strcpy(msgList->lsMessages[j].messages.to, temp);
+                    strcpy(msgList->lsMessages[pos].messages.to, temp);
                 } else if (strcmp(temp, "Cc:") == 0) {
                     fscanf(message, "%s", temp);
-                    strcpy(msgList->lsMessages[j].messages.cc, temp);
+                    strcpy(msgList->lsMessages[pos].messages.cc, temp);
                 }
             }
 
+
+            pos++;
 
             fclose(message);
         }

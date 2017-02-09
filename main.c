@@ -78,7 +78,23 @@ int main(int argc, char** argv) {
     eliminateJumps(&folders);
     jumpsInMsgOut(&folders);
     setPrivateOPublic(&folders);
+    
+//    for (int i = 0; i < folders.numFolders; i++){
+//            printf("%s", folders.folder[i].folderName);
+//            printf("\n");
+//            for (int j = 0; j < folders.folder[i].numMessages; j++){
+//                printf("%s", folders.folder[i].messageName[j].messageName);  
+//    
+//            }
+//        }
+
+    
+    inicializeList(&msgList);
     chargeMessages(&msgList, &folders);
+//    
+//    printf("Empty: %i\n", msgList.empty);
+    
+    //printf("FirstMsg: %i\n", msgList.first);
     //saveOptions(&folders);
     //addMessage(&folders, "6_EMemail", "Outbox"); 
     // for (int i = 0; i < numFolders; i++){
@@ -88,14 +104,14 @@ int main(int argc, char** argv) {
     //  saveOptions(&folders);
     //saveOptions(&folders);
     //
-    //    for (int i = 0; i < numFolders; i++){
-    //        printf("%s", folders.folder[i].folderName);
-    //        printf("\n");
-    //        for (int j = 0; j < folders.folder[i].numMessages; j++){
-    //            printf("%s", folders.folder[i].messageName[j].messageName);  
-    //
-    //        }
-    //    }
+//        for (int i = 0; i < folders.numFolders; i++){
+//            printf("%s", folders.folder[i].folderName);
+//            printf("\n");
+//            for (int j = 0; j < folders.folder[i].numMessages; j++){
+//                printf("%s", folders.folder[i].messageName[j].messageName);  
+//    
+//            }
+//        }
 
     int option = 0;
 

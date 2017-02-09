@@ -3,6 +3,7 @@
 #include "message.h"
 #include "filesOperations.h"
 #include <string.h>
+#include "errors.h"
 
 void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders) {
     int confirmation;
