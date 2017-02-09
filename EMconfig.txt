@@ -3,7 +3,6 @@ messageID: 2
 
 
 Folders:
-
 Inbox
 Outbox
 

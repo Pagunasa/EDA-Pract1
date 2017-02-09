@@ -3,6 +3,7 @@
 #include "message.h"
 #include <string.h>
 #include <time.h>
+#include "errors.h"
 #include "filesOperations.h"
 
 void showMsg(int msgID) {
@@ -14,70 +15,99 @@ void deleteMsg(int msgID) {
 }
 
 void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplicar 
+
+    typedef struct {
+        char name[MAXLENGTH50];
+    } sName;
+
+    typedef struct {
+        sName name[MAXLENGTH18];
+    } sCharNames;
+
+    sCharNames charNames;
+
     FILE * message;
     char temp[MAXLENGTH1000];
     char day[MAXLENGTH18], nDay[MAXLENGTH18], month[MAXLENGTH18], hour[MAXLENGTH18], year[MAXLENGTH18];
     int pos = 0;
     int fristMsg;
+    int isRepeat = 0, isSave = 0;
 
     for (int i = 0; i < folders->numFolders; i++) {
         for (int j = 0; j < folders->folder[i].numMessages; j++) {
 
-            char messageName[MAXLENGTH50];
-            strcpy(messageName, "");
-            sprintf(messageName, "EMDB/%s.txt", folders->folder[i].messageName[j].messageName);
+            for (int e = 0; e <= pos; e++) {
+                if (strcmp(charNames.name[e].name, folders->folder[i].messageName[j].messageName) != 0) {
 
-            message = fopen(messageName, "r");
+                    if (isRepeat == pos) {
+                        strcpy(charNames.name[pos].name, folders->folder[i].messageName[j].messageName);
+                        isSave = 1;
+                    }
+                    isRepeat++;
 
-            fristMsg = msgList->first;
-            msgList->empty = msgList->lsMessages[pos].next;
-            msgList->first = msgList->lsMessages[pos + 1].prev;
-            if (pos == 0) {
-                msgList->lsMessages[pos + 1].prev = msgList->lsMessages[pos].prev;
-                msgList->lsMessages[pos].next = -1;
-            } else {
-                msgList->lsMessages[pos].next = -1;
-                msgList->lsMessages[pos - 1].next = pos;
-                msgList->lsMessages[pos].prev = msgList->first - 1;
-                msgList->lsMessages[pos + 1].prev = -1;
-            }
+                } else {
+                    printf(COLOR_RED "El mensaje ya ha sido introducido anteriormente!! \n" COLOR_RESET);
 
-            while (feof(message) == 0) {
-                fscanf(message, "%s", temp);
-                //fgets(temp, MAXLENGTH50, message);
-                if (strcmp(temp, "Date:") == 0) {
-                    fscanf(message, "%s", day);
-                    fscanf(message, "%s", month);
-                    fscanf(message, "%s", nDay);
-                    fscanf(message, "%s", hour);
-                    fscanf(message, "%s", year);
-
-                    strcpy(msgList->lsMessages[pos].messages.date.day, day);
-                    strcpy(msgList->lsMessages[pos].messages.date.month, month);
-                    strcpy(msgList->lsMessages[pos].messages.date.nDay, nDay);
-                    strcpy(msgList->lsMessages[pos].messages.date.hour, hour);
-                    strcpy(msgList->lsMessages[pos].messages.date.year, year);
-                } else if (strcmp(temp, "Message-ID:") == 0) {
-                    ;
-                    fscanf(message, "%s", temp);
-                    strcpy(msgList->lsMessages[pos].messages.messageName, temp);
-                    //strcpy(msgList->lsMessages[j].messages.messageID, temp);
-                } else if (strcmp(temp, "Subject:") == 0) {
-                    fscanf(message, "%s", temp);
-                    strcpy(msgList->lsMessages[pos].messages.subject, temp);
-                } else if (strcmp(temp, "To:") == 0) {
-                    fscanf(message, "%s", temp);
-                    strcpy(msgList->lsMessages[pos].messages.to, temp);
-                } else if (strcmp(temp, "Cc:") == 0) {
-                    fscanf(message, "%s", temp);
-                    strcpy(msgList->lsMessages[pos].messages.cc, temp);
                 }
             }
 
+            if (isSave == 1) {
+                char messageName[MAXLENGTH50];
+                strcpy(messageName, "");
+                sprintf(messageName, "EMDB/%s.txt", folders->folder[i].messageName[j].messageName);
 
+                message = fopen(messageName, "r");
+
+                fristMsg = msgList->first;
+                msgList->empty = msgList->lsMessages[pos].next;
+                msgList->first = msgList->lsMessages[pos + 1].prev;
+                if (pos == 0) {
+                    msgList->lsMessages[pos + 1].prev = msgList->lsMessages[pos].prev;
+                    msgList->lsMessages[pos].next = -1;
+                } else {
+                    msgList->lsMessages[pos].next = -1;
+                    msgList->lsMessages[pos - 1].next = pos;
+                    msgList->lsMessages[pos].prev = msgList->first - 1;
+                    msgList->lsMessages[pos + 1].prev = -1;
+                }
+
+                while (feof(message) == 0) {
+                    fscanf(message, "%s", temp);
+                    //fgets(temp, MAXLENGTH50, message);
+                    if (strcmp(temp, "Date:") == 0) {
+                        fscanf(message, "%s", day);
+                        fscanf(message, "%s", month);
+                        fscanf(message, "%s", nDay);
+                        fscanf(message, "%s", hour);
+                        fscanf(message, "%s", year);
+
+                        strcpy(msgList->lsMessages[pos].messages.date.day, day);
+                        strcpy(msgList->lsMessages[pos].messages.date.month, month);
+                        strcpy(msgList->lsMessages[pos].messages.date.nDay, nDay);
+                        strcpy(msgList->lsMessages[pos].messages.date.hour, hour);
+                        strcpy(msgList->lsMessages[pos].messages.date.year, year);
+                    } else if (strcmp(temp, "Message-ID:") == 0) {
+                        ;
+                        fscanf(message, "%s", temp);
+                        strcpy(msgList->lsMessages[pos].messages.messageName, temp);
+                        //strcpy(msgList->lsMessages[j].messages.messageID, temp);
+                    } else if (strcmp(temp, "Subject:") == 0) {
+                        fscanf(message, "%s", temp);
+                        strcpy(msgList->lsMessages[pos].messages.subject, temp);
+                    } else if (strcmp(temp, "To:") == 0) {
+                        fscanf(message, "%s", temp);
+                        strcpy(msgList->lsMessages[pos].messages.to, temp);
+                    } else if (strcmp(temp, "Cc:") == 0) {
+                        fscanf(message, "%s", temp);
+                        strcpy(msgList->lsMessages[pos].messages.cc, temp);
+                    }
+                }
+                fclose(message);
+            }
+            
             pos++;
-
-            fclose(message);
+            isRepeat = 0;
+            isSave = 0;
         }
     }
 }
@@ -189,7 +219,8 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
 }
 
 void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]) {
-    int e = 0, numMsg;
+    int e = 0, numMsg, repeat = 0;
+    char messageNameTmp[MAXLENGTH50];
     eliminateJumpsMsg(folders, "Outbox");
     for (int i = 0; i < folders->numFolders; i++) {
         if (strcmp("Outbox", folders->folder[i].folderName) == 0) {
@@ -199,10 +230,29 @@ void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]) {
                 int numMsg = folders->folder[i].numMessages;
                 for (int j = 0; j < numMsg; j++) {
                     if (strcmp(folders->folder[i].messageName[j].messageName, messageName) == 0) {
+                        
+                        sprintf(messageNameTmp, "EMDB/%s.txt", messageName);
+                        
+                        for (int e = 0; e < folders->numFolders; e++){
+                            for(int a = 0; a < folders->folder[e].numMessages; a++){
+                                if(strcmp(folders->folder[e].messageName[a].messageName, messageName) == 0)
+                                    repeat++;
+                            }
+                        }
+                        
+                        if (repeat <= 1){
+                            numMsg = remove(messageNameTmp);
+                            if(numMsg == 0){
+                                printf("Mensaje eliminado fisicamente\n");
+                            } else {
+                                printf("Error no se pudo borrar\n");
+                            }
+                        }
                         numMsg = folders->folder[i].numMessages;
                         folders->folder[i].numMessages = numMsg - 1;
                         strcpy(folders->folder[i].messageName[j].messageName, "NULL");
                         printf("El mensaje existe, borrado correcto");
+                        
                     } else {
                         if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") == 0) {
                             numMsg++;
