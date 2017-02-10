@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
     inicializeList(&msgList);
     chargeMessages(&msgList, &folders);
     
-//    
+    listMsgs("Outbox", &msgList, &folders);
 //    printf("Empty: %i\n", msgList.empty);
     
     //printf("FirstMsg: %i\n", msgList.first);

@@ -134,6 +134,7 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
             isRepeat = 0;
             isSender = 0;
             isSave = 0;
+            bodySender = 0;
         }
     }
 }
