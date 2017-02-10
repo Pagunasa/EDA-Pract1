@@ -1,4 +1,4 @@
-messageID: 14
+messageID: 15
 
 Folders:
 Inbox
@@ -6,11 +6,10 @@ Outbox
 
 Inbox Messages: 
 3
-1
+15_EDA1_email
 
 
 Outbox Messages: 
-3
 2
 1
 
