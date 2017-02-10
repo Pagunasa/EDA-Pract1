@@ -4,17 +4,13 @@ Folders:
 Inbox
 Outbox
 
-Inbox Messages: 
+Inbox Messages:
 3
 1
 
-
-Outbox Messages: 
-3
+Outbox Messages:
 2
+3
 1
-
-
-
 
 End

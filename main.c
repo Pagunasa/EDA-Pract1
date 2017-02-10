@@ -20,6 +20,14 @@ void jumpsInMsgOut(sFolders *folders) {
     }
 }
 
+void showMsgMain(sFolders *folders, sList *msgList){
+    listAllMsgs(msgList);
+    char messageName[MAXLENGTH50];
+    printf("Introduce el nombre del correo:");
+    scanf("%s", messageName);
+    showMsg(msgList, messageName);
+}
+
 void createMsgMain(sFolders *folders) {
     if (folders->folder[1].numMessages < MAXMESSAGES) {
         sMessage message;
@@ -31,11 +39,11 @@ void createMsgMain(sFolders *folders) {
     }
 }
 
-void deleteMsgMain(sFolders *folders) {
+void deleteMsgMain(sFolders *folders, sList *msgList) {
     char messageName[MAXLENGTH50];
     printf("Introduce el nombre del correo:");
     scanf(" %s", messageName);
-    deleteMessage(folders, messageName,"Outbox");
+    deleteMessage(folders, msgList, messageName,"Outbox");
     jumpsInMsgOut(folders);
     saveOptions(folders);
 }
@@ -87,7 +95,9 @@ int main(int argc, char** argv) {
     eliminateJumps(&folders);
     jumpsInMsgOut(&folders);
     setPrivateOPublic(&folders);
-
+    inicializeList(&msgList);
+    chargeMessages(&msgList, &folders);
+    
     //    for (int i = 0; i < folders.numFolders; i++){
     //            printf("%s", folders.folder[i].folderName);
     //            printf("\n");
@@ -98,8 +108,7 @@ int main(int argc, char** argv) {
     //        }
 
 
-    inicializeList(&msgList);
-    chargeMessages(&msgList, &folders);
+
     //    printf("Empty: %i\n", msgList.empty);
 
     //printf("FirstMsg: %i\n", msgList.first);
@@ -150,11 +159,12 @@ menu(int option, sFolders *folders, sList *msgList) {
             break;
         case 3:
             //visualizar correo
-            showMsg(msgList, folders, "1");
+            showMsgMain(folders, msgList);
             break;
         case 4:
             //Borrar correo
-            deleteMsgMain(folders);
+            listMsgs("Outbox", msgList, folders);
+            deleteMsgMain(folders, msgList);
             //            printf("Introduce el nombre del correo:");
             //            scanf(" %s", messageName);
             //            deleteMessage(folders, messageName);

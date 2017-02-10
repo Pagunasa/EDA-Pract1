@@ -8,27 +8,40 @@ void listMsgs(char folderName[MAXLENGTH50], sList *msgList, sFolders *folders) {
     int chrono = 1, inFolder = 0;
     for (int i = 0; i < folders->numFolders; i++) {
         if (strcmp(folderName, folders->folder[i].folderName) == 0) {
-            if(folders->folder[i].numMessages == 0)printf(COLOR_RED "No hay mensajes" COLOR_RESET);
+            if (folders->folder[i].numMessages == 0)printf(COLOR_RED "No hay mensajes" COLOR_RESET);
             inFolder = 1;
             for (int z = 0; z < folders->folder[i].numMessages; z++) {
                 for (int a = 0; a < MAXLENGTH18; a++) {
-                    if (strcmp(folders->folder[i].messageName[z].messageName, 
+                    if (strcmp(folders->folder[i].messageName[z].messageName,
                             msgList->lsMessages[a].messages.messageName) == 0) {
                         printf("%i-%s-%i-%s Ref: %s\n", chrono, msgList->lsMessages[a].messages.sender,
                                 strlen(msgList->lsMessages[a].messages.subject), msgList->lsMessages[a].messages.date.day,
                                 msgList->lsMessages[a].messages.messageName);
                         chrono++;
-                        if(msgList->lsMessages[a].next == -1){
+                        if (msgList->lsMessages[a].next == -1) {
                             a = MAXLENGTH18;
                         }
                     }
                 }
             }
-           //i = folders->numFolders;
+            //i = folders->numFolders;
         }//else if(inFolder == 0){
-//            printf(COLOR_RED "No existe la carpeta\n" COLOR_RESET);
-//        }
+        //            printf(COLOR_RED "No existe la carpeta\n" COLOR_RESET);
+        //        }
         inFolder = 0;
+    }
+}
+
+void listAllMsgs(sList *msgList) {
+    int chrono = 1;
+    for (int a = 0; a < MAXLENGTH18; a++) {
+        printf("%i-%s-%i-%s Ref: %s\n", chrono, msgList->lsMessages[a].messages.sender,
+                strlen(msgList->lsMessages[a].messages.subject), msgList->lsMessages[a].messages.date.day,
+                msgList->lsMessages[a].messages.messageName);
+        chrono++;
+        if (msgList->lsMessages[a].next == -1) {
+            a = MAXLENGTH18;
+        }
     }
 }
 

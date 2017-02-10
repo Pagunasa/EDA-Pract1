@@ -6,19 +6,18 @@
 #include "errors.h"
 #include "filesOperations.h"
 
-
 void deleteMsg(int msgID) {
     //return "Delete Message";
 }
 
-void showMsg(sList *msgList, sFolders *folders, char messageName[MAXLENGTH50]) {
-    for (int i = 0; i < folders->numFolders; i++) {
-        for (int e = 0; e < MAXLENGTH18; e++) {
-            if (strcmp(messageName, msgList->lsMessages[e].messages.messageName) == 0) {
-                printf("%s", msgList->lsMessages[e].messages.body);
-            }
+void showMsg(sList *msgList, char messageName[MAXLENGTH50]) {
+    //    for (int i = 0; i < folders->numFolders; i++) {
+    for (int e = 0; e < MAXLENGTH18; e++) {
+        if (strcmp(messageName, msgList->lsMessages[e].messages.messageName) == 0) {
+            printf("%s \n\n", msgList->lsMessages[e].messages.body);
         }
     }
+    //    }
 }
 
 void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplicar 
@@ -252,8 +251,52 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
     //eliminateJumpsMsg(folders, folderName);
 }
 
-void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50], char foldername[MAXLENGTH50]) {
-    int e = 0, numMsg, repeat = 0;
+void deleteMessageFromList(sList *msgList, char messageName[MAXLENGTH50]) {
+    for (int e = 0; e < MAXLENGTH18; e++) {
+        if (strcmp(messageName, msgList->lsMessages[e].messages.messageName) == 0) {
+            //printf("%s \n\n", msgList->lsMessages[e].messages.body);
+
+            //            if(e != 0){
+            //                msgList->lsMessages[e-1].next = msgList->lsMessages[e].next;
+            //            }else{
+            //                msgList->lsMessages[e].next = -1;
+            //            }  
+            //            
+            //            if (e = msgList->first){
+            //                msgList->first = msgList->lsMessages[e].prev;
+            //            }
+            //            
+            //            msgList->lsMessages[msgList->empty].prev = e;
+            //            msgList->lsMessages[msgList->empty].next = e + 1;
+            //            msgList->lsMessages[e].messages.messageID = -1;
+            int ante = e - 1;
+            int prevMsg = msgList->lsMessages[e].prev;
+            int nextMsg = msgList->lsMessages[e].next;
+            
+            if (e = msgList->first){
+                msgList->first = msgList->lsMessages[e].prev;
+            }
+            
+            if (e != 0) {
+                msgList->lsMessages[ante].next = msgList->lsMessages[e].next;
+            }
+            
+            msgList->lsMessages[e].prev = msgList->empty;
+            msgList->lsMessages[e + 1].prev = msgList->lsMessages[e].prev;
+            msgList->lsMessages[msgList->empty].next = e;
+            
+            msgList->empty = e;
+            
+            msgList->lsMessages[e].messages.messageID = -1;
+
+        }
+    }
+}
+
+void deleteMessage(sFolders *folders, sList *msgList, char messageName[MAXLENGTH50], char foldername[MAXLENGTH50]) {
+    int e = 0, repeat = 0;
+    int confirmation, pass = 1;
+
     char messageNameTmp[MAXLENGTH50];
     eliminateJumpsMsg(folders, foldername);
     for (int i = 0; i < folders->numFolders; i++) {
@@ -265,28 +308,44 @@ void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50], char folder
                 for (int j = 0; j < numMsg; j++) {
                     if (strcmp(folders->folder[i].messageName[j].messageName, messageName) == 0) {
 
-                        sprintf(messageNameTmp, "EMDB/%s.txt", messageName);
+                        showMsg(msgList, messageName);
 
-                        for (int e = 0; e < folders->numFolders; e++) {
-                            for (int a = 0; a < folders->folder[e].numMessages; a++) {
-                                if (strcmp(folders->folder[e].messageName[a].messageName, messageName) == 0)
-                                    repeat++;
-                            }
-                        }
-
-                        if (repeat <= 1) {
-                            numMsg = remove(messageNameTmp);
-                            if (numMsg == 0) {
-                                printf("Mensaje eliminado fisicamente\n");
+                        while (pass != 0) {
+                            printf("Estas seguro que quieres borrar el correo? \n\t1-Si \n\t0-No \n\t");
+                            scanf("%i", &confirmation);
+                            if (confirmation == 1 || confirmation == 0) {
+                                pass = 0;
                             } else {
-                                printf("Error no se pudo borrar\n");
+                                pass = 1;
                             }
                         }
-                        numMsg = folders->folder[i].numMessages;
-                        folders->folder[i].numMessages = numMsg - 1;
-                        strcpy(folders->folder[i].messageName[j].messageName, "NULL");
-                        printf("El mensaje existe, borrado correcto");
 
+                        if (confirmation == 0) {
+                            printf("Eliminación del mensaje cancelado \n");
+                        } else {
+                            sprintf(messageNameTmp, "EMDB/%s.txt", messageName);
+
+                            for (int e = 0; e < folders->numFolders; e++) {
+                                for (int a = 0; a < folders->folder[e].numMessages; a++) {
+                                    if (strcmp(folders->folder[e].messageName[a].messageName, messageName) == 0)
+                                        repeat++;
+                                }
+                            }
+
+                            if (repeat <= 1) {
+                                numMsg = remove(messageNameTmp);
+                                if (numMsg == 0) {
+                                    printf("Mensaje eliminado fisicamente\n");
+                                    deleteMessageFromList(msgList, messageName);
+                                } else {
+                                    printf("Error no se pudo borrar\n");
+                                }
+                            }
+                            numMsg = folders->folder[i].numMessages;
+                            folders->folder[i].numMessages = numMsg - 1;
+                            strcpy(folders->folder[i].messageName[j].messageName, "NULL");
+                            printf("El mensaje existe, borrado correctamente \n");
+                        }
                     } else {
                         if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") == 0) {
                             numMsg++;
@@ -294,7 +353,7 @@ void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50], char folder
                         }
                         e++;
                         if (e == folders->folder[i].numMessages) {
-                            printf("No existe el mensaje");
+                            printf("No existe el mensaje \n");
                         }
                     }
                 }
