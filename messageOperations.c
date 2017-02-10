@@ -6,12 +6,19 @@
 #include "errors.h"
 #include "filesOperations.h"
 
-void showMsg(int msgID) {
-    //return "Show Message";
-}
 
 void deleteMsg(int msgID) {
     //return "Delete Message";
+}
+
+void showMsg(sList *msgList, sFolders *folders, char messageName[MAXLENGTH50]) {
+    for (int i = 0; i < folders->numFolders; i++) {
+        for (int e = 0; e < MAXLENGTH18; e++) {
+            if (strcmp(messageName, msgList->lsMessages[e].messages.messageName) == 0) {
+                printf("%s", msgList->lsMessages[e].messages.body);
+            }
+        }
+    }
 }
 
 void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplicar 
@@ -32,12 +39,12 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
     int pos = 0;
     int fristMsg;
     int isRepeat = 0, isSave = 0, bodySender = 0, isSender = 0;
-    
+
     for (int i = 0; i < folders->numFolders; i++) {
         for (int j = 0; j < folders->folder[i].numMessages; j++) {
-            
+
             strcpy(bodyTemp, "");
-            
+
             for (int e = 0; e <= pos; e++) {
                 if (strcmp(charNames.name[e].name, folders->folder[i].messageName[j].messageName) != 0) {
 
@@ -108,22 +115,22 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
                     }
 
                     if (bodySender == 4) {
-                        
+
                         while (feof(message) == 0) {
                             fgets(temp, MAXLENGTH1000, message);
                             strcat(bodyTemp, temp);
-                            
-                            if(strcmp(temp, "\r\n") == 0){
+
+                            if (strcmp(temp, "\r\n") == 0) {
                                 isSender++;
                             }
-                            
-                            if(isSender == 2){
+
+                            if (isSender == 2) {
                                 strcpy(senderTemp, temp);
                             }
                         }
                         //fscanf(message, "%s", temp);
                         strcpy(msgList->lsMessages[pos].messages.body, bodyTemp);
-//                        fscanf(message, "%s", temp);
+                        //                        fscanf(message, "%s", temp);
                         strcpy(msgList->lsMessages[pos].messages.sender, senderTemp);
                     }
                 }
@@ -245,12 +252,12 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
     //eliminateJumpsMsg(folders, folderName);
 }
 
-void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50]) {
+void deleteMessage(sFolders *folders, char messageName[MAXLENGTH50], char foldername[MAXLENGTH50]) {
     int e = 0, numMsg, repeat = 0;
     char messageNameTmp[MAXLENGTH50];
-    eliminateJumpsMsg(folders, "Outbox");
+    eliminateJumpsMsg(folders, foldername);
     for (int i = 0; i < folders->numFolders; i++) {
-        if (strcmp("Outbox", folders->folder[i].folderName) == 0) {
+        if (strcmp(foldername, folders->folder[i].folderName) == 0) {
             if (folders->folder[i].numMessages == 0) {
                 printf("No hay mensajes en esa carpeta");
             } else {
