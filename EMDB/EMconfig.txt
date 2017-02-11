@@ -5,13 +5,15 @@ Inbox
 Outbox
 
 Inbox Messages: 
-3
 15_EDA1_email
+3
+2
 
 
 Outbox Messages: 
 1
-2
+
+
 
 
 End

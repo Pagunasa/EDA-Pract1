@@ -219,6 +219,11 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
 
 }
 
+void addMessageToList(sMessage *message, sFolders *folders){
+    
+}
+
+
 void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
         char folderName[MAXLENGTH50]) {
 
@@ -290,7 +295,7 @@ void deleteMessageFromList(sList *msgList, char messageName[MAXLENGTH50]) {
             }
             
             if(e == 0){
-                
+                msgList->lsMessages[nextMsg].prev = -1;
             }else{
                 msgList->lsMessages[prevMsg].next = msgList->lsMessages[e].next;
                 if(fristEmpty == nexte){
@@ -329,6 +334,8 @@ void deleteMessage(sFolders *folders, sList *msgList, char messageName[MAXLENGTH
     int confirmation, pass = 1;
 
     char messageNameTmp[MAXLENGTH50];
+    char messageNameTmp1[MAXLENGTH50];
+    
     eliminateJumpsMsg(folders, foldername);
     for (int i = 0; i < folders->numFolders; i++) {
         if (strcmp(foldername, folders->folder[i].folderName) == 0) {
@@ -339,7 +346,8 @@ void deleteMessage(sFolders *folders, sList *msgList, char messageName[MAXLENGTH
                 for (int j = 0; j < numMsg; j++) {
                     if (strcmp(folders->folder[i].messageName[j].messageName, messageName) == 0) {
 
-                        showMsg(msgList, messageName);
+                        sprintf(messageNameTmp1, "<%s>", messageName);
+                        showMsg(msgList, messageNameTmp1);
 
                         while (pass != 0) {
                             printf("Estas seguro que quieres borrar el correo? \n\t1-Si \n\t0-No \n\t");
@@ -367,7 +375,7 @@ void deleteMessage(sFolders *folders, sList *msgList, char messageName[MAXLENGTH
                                 numMsg = remove(messageNameTmp);
                                 if (numMsg == 0) {
                                     printf("Mensaje eliminado fisicamente\n");
-                                    deleteMessageFromList(msgList, messageName);
+                                    deleteMessageFromList(msgList, messageNameTmp1);
                                 } else {
                                     printf("Error no se pudo borrar\n");
                                 }
