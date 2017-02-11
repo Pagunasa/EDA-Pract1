@@ -153,6 +153,7 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
     sprintf(name, "%i_EDA1_email.txt", message->messageID);
     sprintf(nameNtxt, "%i_EDA1_email", message->messageID);
 
+    strcpy(message->messageName, nameNtxt);
     //strcpy(name,message.messageID);
 
     //strcpy(name,"_EDA1_email.txt");
@@ -219,10 +220,36 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
 
 }
 
-void addMessageToList(sMessage *message, sFolders *folders){
-    
-}
+void addMessageToList(sMessage *message, sList *msgList) {
+    int posEmpty = msgList->empty;
+    int nextEmpty = msgList->lsMessages[posEmpty].next;
+    int posFirst = msgList->first;
+    char messageNameTmp1[MAXLENGTH50];
 
+    msgList->empty = nextEmpty;
+    msgList->first = posEmpty;
+
+    msgList->lsMessages[posFirst].next = posEmpty;
+    msgList->lsMessages[posEmpty].prev = posFirst;
+    msgList->lsMessages[posEmpty].next = -1;
+    msgList->lsMessages[nextEmpty].prev = -1;
+
+    sprintf(messageNameTmp1, "<%s>", message->messageName);
+
+    strcpy(msgList->lsMessages[posEmpty].messages.messageName, messageNameTmp1);
+    strcpy(msgList->lsMessages[posEmpty].messages.body, message->body);
+    strcpy(msgList->lsMessages[posEmpty].messages.cc, message->cc);
+    
+    strcpy(msgList->lsMessages[posEmpty].messages.date.day, message->date.day);
+    strcpy(msgList->lsMessages[posEmpty].messages.date.hour, message->date.hour);
+    strcpy(msgList->lsMessages[posEmpty].messages.date.month, message->date.month);
+    strcpy(msgList->lsMessages[posEmpty].messages.date.nDay, message->date.nDay);
+    strcpy(msgList->lsMessages[posEmpty].messages.date.year, message->date.year);
+
+    strcpy(msgList->lsMessages[posEmpty].messages.sender, message->sender);
+    strcpy(msgList->lsMessages[posEmpty].messages.subject, message->subject);
+    strcpy(msgList->lsMessages[posEmpty].messages.to, message->to);
+}
 
 void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
         char folderName[MAXLENGTH50]) {
@@ -280,49 +307,49 @@ void deleteMessageFromList(sList *msgList, char messageName[MAXLENGTH50]) {
             int fristMsg = msgList->first;
             int fristEmpty = msgList->empty;
             int nextToEmpty;
-            int nexte= e+1;
-            
+            int nexte = e + 1;
+
             //SI ES 0 EL NEXT MSG EL PREV NO SE ACTUALIZA BIEN
             //msgList->first = msgList->lsMessages[e].prev;
-            
-            do{
-                nextToEmpty  = msgList->lsMessages[fristEmpty].next;
+
+            do {
+                nextToEmpty = msgList->lsMessages[fristEmpty].next;
                 fristEmpty++;
-            }while(msgList->lsMessages[nextToEmpty].next != -1);
-            
-            if(e == fristMsg){
+            } while (msgList->lsMessages[nextToEmpty].next != -1);
+
+            if (e == fristMsg) {
                 msgList->first = msgList->lsMessages[e].prev;
             }
-            
-            if(e == 0){
+
+            if (e == 0) {
                 msgList->lsMessages[nextMsg].prev = -1;
-            }else{
+            } else {
                 msgList->lsMessages[prevMsg].next = msgList->lsMessages[e].next;
-                if(fristEmpty == nexte){
-                    
-                }else{
+                if (fristEmpty == nexte) {
+
+                } else {
                     msgList->lsMessages[nextMsg].prev = msgList->lsMessages[e].prev;
                 }
             }
-            
+
             msgList->empty = e;
             msgList->lsMessages[fristEmpty].next = e;
             msgList->lsMessages[e].next = -1;
             msgList->lsMessages[e].prev = fristEmpty;
-//            if (e = msgList->first){
-//                msgList->first = msgList->lsMessages[e].prev;
-//            }
-//            
-//            if (e != 0) {
-//                msgList->lsMessages[ante].next = msgList->lsMessages[e].next;
-//            }
-//            
-//            msgList->lsMessages[e].prev = msgList->empty;
-//            msgList->lsMessages[e + 1].prev = msgList->lsMessages[e].prev;
-//            msgList->lsMessages[msgList->empty].next = e;
-//            
-//            msgList->empty = e;
-//            
+            //            if (e = msgList->first){
+            //                msgList->first = msgList->lsMessages[e].prev;
+            //            }
+            //            
+            //            if (e != 0) {
+            //                msgList->lsMessages[ante].next = msgList->lsMessages[e].next;
+            //            }
+            //            
+            //            msgList->lsMessages[e].prev = msgList->empty;
+            //            msgList->lsMessages[e + 1].prev = msgList->lsMessages[e].prev;
+            //            msgList->lsMessages[msgList->empty].next = e;
+            //            
+            //            msgList->empty = e;
+            //            
             msgList->lsMessages[e].messages.messageID = -1;
             strcpy(msgList->lsMessages[e].messages.messageName, "EMPTY_MESSAGE");
         }
@@ -335,7 +362,7 @@ void deleteMessage(sFolders *folders, sList *msgList, char messageName[MAXLENGTH
 
     char messageNameTmp[MAXLENGTH50];
     char messageNameTmp1[MAXLENGTH50];
-    
+
     eliminateJumpsMsg(folders, foldername);
     for (int i = 0; i < folders->numFolders; i++) {
         if (strcmp(foldername, folders->folder[i].folderName) == 0) {

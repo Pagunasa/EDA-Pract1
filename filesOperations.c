@@ -92,7 +92,7 @@ void openOptions(sFolders *folders) {
                                         fgets(temp1, MAXLENGTH50, optionsFile);
                                         i = 0;
                                     }
-                                   
+
                                 } while (e != 1);
                             }
 
@@ -102,8 +102,8 @@ void openOptions(sFolders *folders) {
                         folders->folder[i].numMessages = 0;
                         folders->numFolders++;
                         //eliminateJumps(folders);   
-                        
-                        
+
+
                         //printf("%s", folders->folder[i].folderName);  
                     }
                 } else if (strstr(temp1, "Messages:") != NULL) {
@@ -138,20 +138,22 @@ void saveOptions(sFolders *folders) {
     strcat(myTxt, "\n");
     for (int i = 0; i < folders->numFolders; i++) {
         // eliminateJumps(folders);
-        strcat(temp, folders->folder[i].folderName);
-        strcat(temp, " Messages: \n");
-        strcat(myTxt, temp);
-        strcpy(temp, "");
-        int numMsg = folders->folder[i].numMessages;
-        for (int j = 0; j < numMsg; j++) {
-            if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") != 0) { //ESTA BIEN CREO
-                strcat(myTxt, folders->folder[i].messageName[j].messageName);
-                strcat(myTxt, "\n");
-            } else if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") == 0) { //  ESTO NSE PUEDE QUITAR
-                numMsg++;
+        if (strcmp(folders->folder[i].folderName, "NULL") != 0) {
+            strcat(temp, folders->folder[i].folderName);
+            strcat(temp, " Messages: \n");
+            strcat(myTxt, temp);
+            strcpy(temp, "");
+            int numMsg = folders->folder[i].numMessages;
+            for (int j = 0; j < numMsg; j++) {
+                if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") != 0) { //ESTA BIEN CREO
+                    strcat(myTxt, folders->folder[i].messageName[j].messageName);
+                    strcat(myTxt, "\n");
+                } else if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") == 0) { //  ESTO NSE PUEDE QUITAR
+                    numMsg++;
+                }
             }
+            strcat(myTxt, "\n\n");
         }
-        strcat(myTxt, "\n\n");
     }
     strcat(myTxt, "\n\n");
     strcat(myTxt, "End");
