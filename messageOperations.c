@@ -164,6 +164,9 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
 
     // strcat(message.messageID, name);
 
+    time_t rawtime;
+    struct tm * timeinfo;
+    
     time(&rawtime);
     timeinfo = localtime(&rawtime);
 
@@ -189,7 +192,8 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
     strcpy(abs, "");
     strcat(abs, "EMDB/");
     strcat(abs, name);
-
+    
+    FILE *fp;
     fp = fopen(abs, "wt");
 
     //printf("%s", abs);

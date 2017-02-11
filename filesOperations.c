@@ -6,9 +6,9 @@
 #include "filesOperations.h"
 #include "errors.h"
 
-void closeFile(FILE fp) {
-    //fclose(fp);
-}
+//void closeFile(FILE fp) {
+//    //fclose(fp);
+//}
 
 void editOptions(char newoptionsvalues) {
     //    return "message";
@@ -159,7 +159,8 @@ void saveOptions(sFolders *folders) {
     }
     strcat(myTxt, "\n\n");
     strcat(myTxt, "End");
-
+    
+    FILE *fp;
     fp = fopen("EMDB/EMconfig.txt", "wt");
     fprintf(fp, "messageID: %i", folders->messageID);
     fprintf(fp, myTxt);
