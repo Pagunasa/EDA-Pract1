@@ -36,25 +36,5 @@ typedef struct{
     sFolder folder[MAXFOLDERS];
 }sFolders;
 
-/*typedef struct{
-    char messageName[MAXLENGTH20];
-} sMessageName[MAXMESSAGES];
-
-typedef struct{
-    char folderName[MAXLENGTH20];
-    sMessageName messages;
-} sFolders[MAXFOLDERS];
-
-//typedef struct{
-//    char folderName[MAXLENGTH20];
-//} sFoldersName;
-
-typedef struct{
-    int idMessage;
-    //sFoldersName foldersName[MAXFOLDERS];
-    sFolders folders;
-} sOptions;*/
-
-
 #endif	/* FILESOPERATIONS_H */
 
