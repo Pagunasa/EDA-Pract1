@@ -10,10 +10,8 @@ Inbox Messages:
 
 
 Outbox Messages: 
-2
 1
-
-
+2
 
 
 End

@@ -269,26 +269,57 @@ void deleteMessageFromList(sList *msgList, char messageName[MAXLENGTH50]) {
             //            msgList->lsMessages[msgList->empty].prev = e;
             //            msgList->lsMessages[msgList->empty].next = e + 1;
             //            msgList->lsMessages[e].messages.messageID = -1;
-            int ante = e - 1;
+            //int ante = e - 1;
             int prevMsg = msgList->lsMessages[e].prev;
             int nextMsg = msgList->lsMessages[e].next;
+            int fristMsg = msgList->first;
+            int fristEmpty = msgList->empty;
+            int nextToEmpty;
+            int nexte= e+1;
             
-            if (e = msgList->first){
+            //SI ES 0 EL NEXT MSG EL PREV NO SE ACTUALIZA BIEN
+            //msgList->first = msgList->lsMessages[e].prev;
+            
+            do{
+                nextToEmpty  = msgList->lsMessages[fristEmpty].next;
+                fristEmpty++;
+            }while(msgList->lsMessages[nextToEmpty].next != -1);
+            
+            if(e == fristMsg){
                 msgList->first = msgList->lsMessages[e].prev;
             }
             
-            if (e != 0) {
-                msgList->lsMessages[ante].next = msgList->lsMessages[e].next;
+            if(e == 0){
+                
+            }else{
+                msgList->lsMessages[prevMsg].next = msgList->lsMessages[e].next;
+                if(fristEmpty == nexte){
+                    
+                }else{
+                    msgList->lsMessages[nextMsg].prev = msgList->lsMessages[e].prev;
+                }
             }
             
-            msgList->lsMessages[e].prev = msgList->empty;
-            msgList->lsMessages[e + 1].prev = msgList->lsMessages[e].prev;
-            msgList->lsMessages[msgList->empty].next = e;
-            
             msgList->empty = e;
-            
+            msgList->lsMessages[fristEmpty].next = e;
+            msgList->lsMessages[e].next = -1;
+            msgList->lsMessages[e].prev = fristEmpty;
+//            if (e = msgList->first){
+//                msgList->first = msgList->lsMessages[e].prev;
+//            }
+//            
+//            if (e != 0) {
+//                msgList->lsMessages[ante].next = msgList->lsMessages[e].next;
+//            }
+//            
+//            msgList->lsMessages[e].prev = msgList->empty;
+//            msgList->lsMessages[e + 1].prev = msgList->lsMessages[e].prev;
+//            msgList->lsMessages[msgList->empty].next = e;
+//            
+//            msgList->empty = e;
+//            
             msgList->lsMessages[e].messages.messageID = -1;
-
+            strcpy(msgList->lsMessages[e].messages.messageName, "EMPTY_MESSAGE");
         }
     }
 }
