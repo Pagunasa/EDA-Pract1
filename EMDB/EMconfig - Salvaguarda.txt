@@ -3,6 +3,7 @@ messageID: 14
 Folders:
 Inbox
 Outbox
+Pagunasa
 
 Inbox Messages:
 3
@@ -12,5 +13,9 @@ Outbox Messages:
 2
 3
 1
+
+Pagunasa Messages:
+2
+3
 
 End

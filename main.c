@@ -20,10 +20,17 @@ void jumpsInMsgOut(sFolders *folders) {
     }
 }
 
+void searchInMain(sList *msgList) {
+    char searchParam[MAXLENGTH50];
+    printf("Introduce el nombre del parametro: ");
+    scanf("%s", searchParam);
+    searchInMsg(msgList, searchParam);
+}
+
 void showMsgMain(sFolders *folders, sList *msgList) {
     listAllMsgs(msgList);
     char messageName[MAXLENGTH50];
-    printf("Introduce el nombre del correo:");
+    printf("Introduce el nombre del correo: ");
     scanf("%s", messageName);
     showMsg(msgList, messageName);
 }
@@ -241,6 +248,7 @@ menu(int option, sFolders *folders, sList *msgList) {
             break;
         case 9:
             //Buscar una cadena
+            searchInMain(msgList);
             break;
         case 10:
             //salir

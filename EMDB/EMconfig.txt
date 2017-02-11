@@ -3,17 +3,19 @@ messageID: 18
 Folders:
 Inbox
 Outbox
-NULL
+Pagunasa
 
 Inbox Messages: 
-15_EDA1_email
-3
 2
+1
 
 
 Outbox Messages: 
 1
-18_EDA1_email
+
+
+Pagunasa Messages: 
+3
 
 
 

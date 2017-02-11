@@ -104,11 +104,13 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
                         strcpy(msgList->lsMessages[pos].messages.subject, temp);
                         bodySender++;
                     } else if (strcmp(temp, "To:") == 0) {
-                        fscanf(message, "%s", temp);
+                        //fscanf(message, "%s", temp);
+                        fgets(temp, MAXLENGTH1000, message);
                         strcpy(msgList->lsMessages[pos].messages.to, temp);
                         bodySender++;
                     } else if (strcmp(temp, "Cc:") == 0) {
-                        fscanf(message, "%s", temp);
+                        //fscanf(message, "%s", temp);
+                        fgets(temp, MAXLENGTH1000, message);
                         strcpy(msgList->lsMessages[pos].messages.cc, temp);
                         bodySender++;
                     }
@@ -134,9 +136,11 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
                     }
                 }
                 fclose(message);
+                pos++;
             }
 
-            pos++;
+
+
             isRepeat = 0;
             isSender = 0;
             isSave = 0;
@@ -239,7 +243,7 @@ void addMessageToList(sMessage *message, sList *msgList) {
     strcpy(msgList->lsMessages[posEmpty].messages.messageName, messageNameTmp1);
     strcpy(msgList->lsMessages[posEmpty].messages.body, message->body);
     strcpy(msgList->lsMessages[posEmpty].messages.cc, message->cc);
-    
+
     strcpy(msgList->lsMessages[posEmpty].messages.date.day, message->date.day);
     strcpy(msgList->lsMessages[posEmpty].messages.date.hour, message->date.hour);
     strcpy(msgList->lsMessages[posEmpty].messages.date.month, message->date.month);
@@ -452,14 +456,58 @@ void inputNewMsg(sMessage *message, sFolders *folders, char folderName[MAXLENGTH
     createMessage(message, folderName, folders);
 }
 
-void moveMsg(int msgId, char folderName[50]) {
-    // return "Move Message";
-}
+void searchInMsg(sList *msgList, char searchParam[MAXLENGTH50]) {
+    int chrono = 0, end = 0, isInside = 0;
+    int pos = msgList->first;
 
-void searchInMsg(char searchParam[100]) {
-    //   return "Search in Message";
-}
+    while (end != 1) {
+        
+        isInside = 0;
+        if (strstr(msgList->lsMessages[pos].messages.body, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.cc, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.messageName, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.sender, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.subject, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.to, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.date.day, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.date.hour, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.date.month, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.date.nDay, searchParam) != 0) {
+            isInside++;
+        }
+        if (strstr(msgList->lsMessages[pos].messages.date.year, searchParam) != 0) {
+            isInside++;
+        }
+        
+        if (isInside != 0) {
+            printf("%i-%s-%i-%s -> Ref: %s\n", chrono, msgList->lsMessages[pos].messages.sender,
+                    strlen(msgList->lsMessages[pos].messages.subject), msgList->lsMessages[pos].messages.date.day,
+                    msgList->lsMessages[pos].messages.messageName);
+            chrono++;
+        }
 
-void deleteMsgInFolder(int msgID, char folderName[50]) {
-
+        if (msgList->lsMessages[pos].prev == -1) {
+            end = 1;
+        }
+        
+        pos = msgList->lsMessages[pos].prev;
+    }
 }

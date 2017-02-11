@@ -132,8 +132,10 @@ void saveOptions(sFolders *folders) {
     strcat(myTxt, "\n\n");
     strcat(myTxt, "Folders:\n");
     for (int i = 0; i < folders->numFolders; i++) {
-        strcat(myTxt, folders->folder[i].folderName);
-        strcat(myTxt, "\n");
+        if (strcmp(folders->folder[i].folderName, "NULL") != 0) {
+            strcat(myTxt, folders->folder[i].folderName);
+            strcat(myTxt, "\n");
+        }
     }
     strcat(myTxt, "\n");
     for (int i = 0; i < folders->numFolders; i++) {

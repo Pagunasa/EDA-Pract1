@@ -7,7 +7,7 @@
 
 void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders, sList *msgList) {
     int confirmation;
-    int pass = 1, exists = 0;
+    int pass = 1, exists = 0, repeated = 0;
 
     typedef struct {
         char messageN[MAXLENGTH50];
@@ -20,13 +20,13 @@ void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders, sList *msgLis
 
     sMensajesFo mesFo;
     char messageNameTmp1[MAXLENGTH50];
-    
+
     for (int i = 0; i < folders->numFolders; i++) {
         if (strcmp(folderName, folders->folder[i].folderName) == 0) {
             exists = 1;
             mesFo.nMefo = 0;
             for (int a = 0; a < folders->folder[i].numMessages; a++) {
-                strcpy(mesFo.mensajes[a].messageN, folders->folder[i].folderName);
+                strcpy(mesFo.mensajes[a].messageN, folders->folder[i].messageName[a].messageName);
                 mesFo.nMefo++;
             }
 
@@ -45,12 +45,30 @@ void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders, sList *msgLis
                     };
                     if (confirmation == 1) {
                         printf("Carpeta borrada \n");
-                        strcpy(folders->folder[i].folderName, "NULL");
                         
+
                         for (int a = 0; a < mesFo.nMefo; a++) {
-                            sprintf(messageNameTmp1, "<%s>", mesFo.nMefo);
-                            deleteMessageFromList(msgList, messageNameTmp1);
+                            for (int e = 0; e < folders->numFolders; e++) {
+                                if (strcmp(folders->folder[e].folderName, folderName) != 0) {
+                                    for (int u = 0; u < folders->folder[e].numMessages; u++) {
+                                        if (strcmp(folders->folder[e].messageName[u].messageName, mesFo.mensajes[a].messageN) == 0) {
+                                            repeated++;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (repeated == 0) {
+                                sprintf(messageNameTmp1, "<%s>", mesFo.mensajes[a].messageN);
+                                deleteMessageFromList(msgList, messageNameTmp1);
+                                sprintf(messageNameTmp1, "EMDB/%s.txt", mesFo.mensajes[a].messageN);
+                                remove(messageNameTmp1);
+                                
+                            }
+                            repeated = 0;
                         }
+                        
+                        strcpy(folders->folder[i].folderName, "NULL");
 
                     } else {
                         printf("Carpeta no borrada \n");
