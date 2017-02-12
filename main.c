@@ -188,7 +188,7 @@ void listMsgMain(sFolders *folders, sList *msgList) {
     listMsgs(folderName, msgList, folders);
 }
 
-menu(int option, sFolders *folders, sList *msgList) {
+void menu(int option, sFolders *folders, sList *msgList) {
     char messageName[MAXLENGTH50];
 
 
