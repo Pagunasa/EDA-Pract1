@@ -12,6 +12,68 @@
 #include "filesOperations.h"
 #include "message.h"
 
+
+/*
+ * 
+ */
+int main(int argc, char** argv) {
+
+    sFolders folders;
+    sList msgList;
+
+    openOptions(&folders);
+    eliminateJumps(&folders);
+    jumpsInMsgOut(&folders);
+    setPrivateOPublic(&folders);
+    inicializeList(&msgList);
+    chargeMessages(&msgList, &folders);
+
+    //    for (int i = 0; i < folders.numFolders; i++){
+    //            printf("%s", folders.folder[i].folderName);
+    //            printf("\n");
+    //            for (int j = 0; j < folders.folder[i].numMessages; j++){
+    //                printf("%s", folders.folder[i].messageName[j].messageName);  
+    //    
+    //            }
+    //        }
+
+
+
+    //    printf("Empty: %i\n", msgList.empty);
+
+    //printf("FirstMsg: %i\n", msgList.first);
+    //saveOptions(&folders);
+    //addMessage(&folders, "6_EMemail", "Outbox"); 
+    // for (int i = 0; i < numFolders; i++){
+    //      eliminateJumpsMsg(&folders, folders.folder[i].folderName);
+    //  }
+
+    //  saveOptions(&folders);
+    //saveOptions(&folders);
+    //
+    //        for (int i = 0; i < folders.numFolders; i++){
+    //            printf("%s", folders.folder[i].folderName);
+    //            printf("\n");
+    //            for (int j = 0; j < folders.folder[i].numMessages; j++){
+    //                printf("%s", folders.folder[i].messageName[j].messageName);  
+    //    
+    //            }
+    //        }
+
+    int option = 0;
+
+    do {
+        writeMenu();
+
+        printf("Introduce Opcion: ");
+        scanf("%d", &option);
+
+        menu(option, &folders, &msgList);
+    } while (option != 10);
+
+    return (EXIT_SUCCESS);
+}
+
 void jumpsInMsgOut(sFolders *folders) {
     for (int i = 0; i < folders->numFolders; i++) {
         if (folders->folder[i].numMessages != 0) {
@@ -124,67 +186,6 @@ void listMsgMain(sFolders *folders, sList *msgList) {
     scanf("%s", folderName);
 
     listMsgs(folderName, msgList, folders);
-}
-
-/*
- * 
- */
-int main(int argc, char** argv) {
-
-    sFolders folders;
-    sList msgList;
-
-    openOptions(&folders);
-    eliminateJumps(&folders);
-    jumpsInMsgOut(&folders);
-    setPrivateOPublic(&folders);
-    inicializeList(&msgList);
-    chargeMessages(&msgList, &folders);
-
-    //    for (int i = 0; i < folders.numFolders; i++){
-    //            printf("%s", folders.folder[i].folderName);
-    //            printf("\n");
-    //            for (int j = 0; j < folders.folder[i].numMessages; j++){
-    //                printf("%s", folders.folder[i].messageName[j].messageName);  
-    //    
-    //            }
-    //        }
-
-
-
-    //    printf("Empty: %i\n", msgList.empty);
-
-    //printf("FirstMsg: %i\n", msgList.first);
-    //saveOptions(&folders);
-    //addMessage(&folders, "6_EMemail", "Outbox"); 
-    // for (int i = 0; i < numFolders; i++){
-    //      eliminateJumpsMsg(&folders, folders.folder[i].folderName);
-    //  }
-
-    //  saveOptions(&folders);
-    //saveOptions(&folders);
-    //
-    //        for (int i = 0; i < folders.numFolders; i++){
-    //            printf("%s", folders.folder[i].folderName);
-    //            printf("\n");
-    //            for (int j = 0; j < folders.folder[i].numMessages; j++){
-    //                printf("%s", folders.folder[i].messageName[j].messageName);  
-    //    
-    //            }
-    //        }
-
-    int option = 0;
-
-    do {
-        writeMenu();
-
-        printf("Introduce Opcion: ");
-        scanf("%d", &option);
-
-        menu(option, &folders, &msgList);
-    } while (option != 10);
-
-    return (EXIT_SUCCESS);
 }
 
 menu(int option, sFolders *folders, sList *msgList) {
