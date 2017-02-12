@@ -92,7 +92,7 @@ void searchInMain(sList *msgList){  //Sirve para llamar a la busqueda
 void showMsgMain(sFolders *folders, sList *msgList) { //LLama al show message
     listAllMsgs(msgList);
     char messageName[MAXLENGTH50];
-    printf("Introduce el nombre del correo: ");
+    printf("Introduce la Ref del correo (con <>): ");
     scanf("%s", messageName);
     showMsg(msgList, messageName);
 }
@@ -113,7 +113,7 @@ void createMsgMainInFolder(sFolders *folders, sList *msgList) { //llama al crear
     if (folders->folder[1].numMessages < MAXMESSAGES) {
 
         char folderName[MAXLENGTH20];
-        printf("Introduce el nombre de la carpeta:");
+        printf("Introduce el nombre de la carpeta: ");
         scanf(" %s", folderName);
 
 
@@ -129,7 +129,7 @@ void createMsgMainInFolder(sFolders *folders, sList *msgList) { //llama al crear
 
 void deleteMsgMain(sFolders *folders, sList *msgList) { //llama al delete mensaje por defecto lo borra de outbox
     char messageName[MAXLENGTH50];
-    printf("Introduce el nombre del correo: ");
+    printf("Introduce Ref del correo (sin <>): ");
     scanf("%s", messageName);
     deleteMessage(folders, msgList, messageName, "Outbox");
     jumpsInMsgOut(folders);
@@ -152,7 +152,7 @@ void deleteMsgMainInFolder(sFolders *folders, sList *msgList) { //llama al delet
     scanf(" %s", folderName);
     listMsgs(folderName, msgList, folders);
 
-    printf("Introduce el nombre del correo: ");
+    printf("Introduce Ref del correo (sin <>):");
     scanf(" %s", messageName);
     deleteMessage(folders, msgList, messageName, folderName);
 
