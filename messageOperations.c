@@ -16,7 +16,7 @@ void showMsg(sList *msgList, char messageName[MAXLENGTH50]) {
     //    }
 }
 
-void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplicar 
+void chargeMessages(sList *msgList, sFolders *folders) { //carga los mensajes de emoptions a la lista de mensajes 
 
     typedef struct {
         char name[MAXLENGTH50];
@@ -77,7 +77,7 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
 
                 while (feof(message) == 0) {
                     fscanf(message, "%s", temp);
-                    //fgets(temp, MAXLENGTH50, message);
+                    
                     if (strcmp(temp, "Date:") == 0) {
                         fscanf(message, "%s", day);
                         fscanf(message, "%s", month);
@@ -94,18 +94,15 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
                         fscanf(message, "%s", temp);
                         strcpy(msgList->lsMessages[pos].messages.messageName, temp);
                         bodySender++;
-                        //strcpy(msgList->lsMessages[j].messages.messageID, temp);
                     } else if (strcmp(temp, "Subject:") == 0) {
                         fscanf(message, "%s", temp);
                         strcpy(msgList->lsMessages[pos].messages.subject, temp);
                         bodySender++;
                     } else if (strcmp(temp, "To:") == 0) {
-                        //fscanf(message, "%s", temp);
                         fgets(temp, MAXLENGTH1000, message);
                         strcpy(msgList->lsMessages[pos].messages.to, temp);
                         bodySender++;
                     } else if (strcmp(temp, "Cc:") == 0) {
-                        //fscanf(message, "%s", temp);
                         fgets(temp, MAXLENGTH1000, message);
                         strcpy(msgList->lsMessages[pos].messages.cc, temp);
                         bodySender++;
@@ -125,9 +122,7 @@ void chargeMessages(sList *msgList, sFolders *folders) { //no se tien que duplic
                                 strcpy(senderTemp, temp);
                             }
                         }
-                        //fscanf(message, "%s", temp);
                         strcpy(msgList->lsMessages[pos].messages.body, bodyTemp);
-                        //                        fscanf(message, "%s", temp);
                         strcpy(msgList->lsMessages[pos].messages.sender, senderTemp);
                     }
                 }
@@ -154,11 +149,6 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
     sprintf(nameNtxt, "%i_EDA1_email", message->messageID);
 
     strcpy(message->messageName, nameNtxt);
-    //strcpy(name,message.messageID);
-
-    //strcpy(name,"_EDA1_email.txt");
-
-    // strcat(message.messageID, name);
 
     time_t rawtime;
     struct tm * timeinfo;
@@ -191,32 +181,7 @@ void createMessage(sMessage *message, char folderName[MAXLENGTH50], sFolders *fo
     
     FILE *fp;
     fp = fopen(abs, "wt");
-
-    //printf("%s", abs);
-
     fprintf(fp, myTxt);
-
-    /* fprintf(fp, "Date: ");
-     fprintf(fp, asctime (timeinfo));
-     fprintf(fp, "Message-ID: <");
-     fprintf(fp, name);
-     fprintf(fp, "> \n");
-     fprintf(fp, "Subject: ");
-     fprintf(fp, message.subject);
-     fprintf(fp, "\n");
-     fprintf(fp, "To: ");
-     fprintf(fp, message.sender);
-     fprintf(fp, "\n");
-     fprintf(fp, "Cc: ");
-     fprintf(fp, message.sender);
-     fprintf(fp, "\n\n");
-     fprintf(fp, message.subject);
-     fprintf(fp, "\n\n");
-     fprintf(fp, message.sender);*/
-    //strcat(myTxt, message.sender);
-    //strcat(myTxt, "\n");
-    //strcat(myTxt, message.subject);
-    //strcat(myTxt, "\n");
 
     fclose(fp);
 
@@ -256,7 +221,7 @@ void addMessageToList(sMessage *message, sList *msgList) {
 }
 
 void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
-        char folderName[MAXLENGTH50]) {
+        char folderName[MAXLENGTH50]) {  //Añade un mensaje al srtuct de mensajes
 
     int j = 0;
     for (int i = 0; i < folders->numFolders; i++) {
@@ -266,14 +231,7 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
             } else {
                 j = folders->folder[i].numMessages;
                 folders->folder[i].numMessages = j + 1;
-                //                strcat(messageName, "/n");
-                //for (int e= 0; e <= folders->folder[i].numMessages; e++){
-                // if(strcmp("", folders->folder[i].messageName[e].messageName) == 0){
-                //     strcpy(folders->folder[i].messageName[e].messageName, messageName);
-                // } else if (e == folders->folder[i].numMessages){
                 strcpy(folders->folder[i].messageName[j].messageName, messageName);
-                // }
-                //}
                 folders->messageID = folders->messageID + 1;
                 break;
             }
@@ -283,38 +241,18 @@ void addMessage(sFolders *folders, char messageName[MAXLENGTH50],
             }
         }
     }
-
-    //eliminateJumpsMsg(folders, folderName);
 }
 
-void deleteMessageFromList(sList *msgList, char messageName[MAXLENGTH50]) {
+void deleteMessageFromList(sList *msgList, char messageName[MAXLENGTH50]) { //Borra un mensaje de la lista
     for (int e = 0; e < MAXLENGTH18; e++) {
         if (strcmp(messageName, msgList->lsMessages[e].messages.messageName) == 0) {
-            //printf("%s \n\n", msgList->lsMessages[e].messages.body);
-
-            //            if(e != 0){
-            //                msgList->lsMessages[e-1].next = msgList->lsMessages[e].next;
-            //            }else{
-            //                msgList->lsMessages[e].next = -1;
-            //            }  
-            //            
-            //            if (e = msgList->first){
-            //                msgList->first = msgList->lsMessages[e].prev;
-            //            }
-            //            
-            //            msgList->lsMessages[msgList->empty].prev = e;
-            //            msgList->lsMessages[msgList->empty].next = e + 1;
-            //            msgList->lsMessages[e].messages.messageID = -1;
-            //int ante = e - 1;
+            
             int prevMsg = msgList->lsMessages[e].prev;
             int nextMsg = msgList->lsMessages[e].next;
             int fristMsg = msgList->first;
             int fristEmpty = msgList->empty;
             int nextToEmpty;
             int nexte = e + 1;
-
-            //SI ES 0 EL NEXT MSG EL PREV NO SE ACTUALIZA BIEN
-            //msgList->first = msgList->lsMessages[e].prev;
 
             do {
                 nextToEmpty = msgList->lsMessages[fristEmpty].next;
@@ -340,27 +278,13 @@ void deleteMessageFromList(sList *msgList, char messageName[MAXLENGTH50]) {
             msgList->lsMessages[fristEmpty].next = e;
             msgList->lsMessages[e].next = -1;
             msgList->lsMessages[e].prev = fristEmpty;
-            //            if (e = msgList->first){
-            //                msgList->first = msgList->lsMessages[e].prev;
-            //            }
-            //            
-            //            if (e != 0) {
-            //                msgList->lsMessages[ante].next = msgList->lsMessages[e].next;
-            //            }
-            //            
-            //            msgList->lsMessages[e].prev = msgList->empty;
-            //            msgList->lsMessages[e + 1].prev = msgList->lsMessages[e].prev;
-            //            msgList->lsMessages[msgList->empty].next = e;
-            //            
-            //            msgList->empty = e;
-            //            
             msgList->lsMessages[e].messages.messageID = -1;
             strcpy(msgList->lsMessages[e].messages.messageName, "EMPTY_MESSAGE");
         }
     }
 }
 
-void deleteMessage(sFolders *folders, sList *msgList, char messageName[MAXLENGTH50], char foldername[MAXLENGTH50]) {
+void deleteMessage(sFolders *folders, sList *msgList, char messageName[MAXLENGTH50], char foldername[MAXLENGTH50]) { //Sirve para borrar el mensaje dependiendo de las condiciones
     int e = 0, repeat = 0;
     int confirmation, pass = 1;
 
@@ -432,10 +356,7 @@ void deleteMessage(sFolders *folders, sList *msgList, char messageName[MAXLENGTH
     }
 }
 
-void inputNewMsg(sMessage *message, sFolders *folders, char folderName[MAXLENGTH50]) {
-    //char c[50];
-    //char d[50];
-    //printf();
+void inputNewMsg(sMessage *message, sFolders *folders, char folderName[MAXLENGTH50]) { //Introducir la información para crear un mensaje
 
     message->messageID = folders->messageID + 1;
 
@@ -456,7 +377,7 @@ void inputNewMsg(sMessage *message, sFolders *folders, char folderName[MAXLENGTH
     createMessage(message, folderName, folders);
 }
 
-void searchInMsg(sList *msgList, char searchParam[MAXLENGTH50]) {
+void searchInMsg(sList *msgList, char searchParam[MAXLENGTH50]) { //Sirve para buscar una cadena en todos los correos en los que este se veran por pantalla
     int chrono = 0, end = 0, isInside = 0;
     int pos = msgList->first;
 

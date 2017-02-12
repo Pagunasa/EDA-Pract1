@@ -5,7 +5,7 @@
 #include <string.h>
 #include "errors.h"
 
-void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders, sList *msgList) {
+void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders, sList *msgList) { //sirve para borrar una carpeta y tmb sus correos si no estan en otra
     int confirmation = 2;
     int pass = 1, exists = 0, repeated = 0;
 
@@ -79,24 +79,15 @@ void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders, sList *msgLis
                 }
 
             }
-            //folders->folder[i].folderName
         } else {
             if (i == folders->numFolders - 1 && exists == 0) {
                 printf("No existe esa carpeta!!! \n");
             }
         }
     }
-    //    remove(folderName);
-    //    int ret = remove(folderName);
-    //    if (ret == 0) {
-    //        printf("La carpeta se ha podido borrar");
-    //    } else {
-    //        printf("La carpeta no se ha podido borrar o no existe\n");
-    //    }
 }
-//    return "Delete Folder";
 
-void setPrivateOPublic(sFolders *folders) {
+void setPrivateOPublic(sFolders *folders) { //Sirve para definir la privacidad de las carpetas
     for (int i = 0; i < folders->numFolders; i++) {
         if (strcmp(folders->folder[i].folderName, "Inbox") == 0
                 || strcmp(folders->folder[i].folderName, "Outbox") == 0) {
@@ -107,11 +98,7 @@ void setPrivateOPublic(sFolders *folders) {
     }
 }
 
-void createFolder(char folderName[MAXLENGTH50], sFolders *folders) {
-    /*FILE * fp;
-    fp = fopen ("EMconfig.txt", "w+");
-    fprintf(fp, "%s",folderName);*/
-    //printf("%s",folders->folder[numFolders].folderName);
+void createFolder(char folderName[MAXLENGTH50], sFolders *folders) { //Sirve para crear la carpeta
 
     int repeat = FALSE;
 
@@ -132,9 +119,4 @@ void createFolder(char folderName[MAXLENGTH50], sFolders *folders) {
             printf("Carpeta creada con exito!!!\n");
         }
     }
-
-
-    //   fclose(fp);
-    //   return(0); 
-    //  return "Create Folder";
 }

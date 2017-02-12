@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
     return (EXIT_SUCCESS);
 }
 
-void jumpsInMsgOut(sFolders *folders) {
+void jumpsInMsgOut(sFolders *folders) {   //Llama  al eliminar el salto de los mensajes para todos
     for (int i = 0; i < folders->numFolders; i++) {
         if (folders->folder[i].numMessages != 0) {
             eliminateJumpsMsg(folders, folders->folder[i].folderName);
@@ -82,14 +82,14 @@ void jumpsInMsgOut(sFolders *folders) {
     }
 }
 
-void searchInMain(sList *msgList) {
+void searchInMain(sList *msgList){  //Sirve para llamar a la busqueda
     char searchParam[MAXLENGTH50];
     printf("Introduce el nombre del parametro: ");
     scanf("%s", searchParam);
     searchInMsg(msgList, searchParam);
 }
 
-void showMsgMain(sFolders *folders, sList *msgList) {
+void showMsgMain(sFolders *folders, sList *msgList) { //LLama al show message
     listAllMsgs(msgList);
     char messageName[MAXLENGTH50];
     printf("Introduce el nombre del correo: ");
@@ -97,7 +97,7 @@ void showMsgMain(sFolders *folders, sList *msgList) {
     showMsg(msgList, messageName);
 }
 
-void createMsgMain(sFolders *folders, sList *msgList) {
+void createMsgMain(sFolders *folders, sList *msgList) { //llama al crear mensaje por defecto se crea en OutBox
     if (folders->folder[1].numMessages < MAXMESSAGES) {
         sMessage message;
         inputNewMsg(&message, folders, "Outbox");
@@ -109,7 +109,7 @@ void createMsgMain(sFolders *folders, sList *msgList) {
     }
 }
 
-void createMsgMainInFolder(sFolders *folders, sList *msgList) {
+void createMsgMainInFolder(sFolders *folders, sList *msgList) { //llama al crear mensaje
     if (folders->folder[1].numMessages < MAXMESSAGES) {
 
         char folderName[MAXLENGTH20];
@@ -127,7 +127,7 @@ void createMsgMainInFolder(sFolders *folders, sList *msgList) {
     }
 }
 
-void deleteMsgMain(sFolders *folders, sList *msgList) {
+void deleteMsgMain(sFolders *folders, sList *msgList) { //llama al delete mensaje por defecto lo borra de outbox
     char messageName[MAXLENGTH50];
     printf("Introduce el nombre del correo: ");
     scanf("%s", messageName);
@@ -136,7 +136,7 @@ void deleteMsgMain(sFolders *folders, sList *msgList) {
     saveOptions(folders);
 }
 
-void deleteFolderMain(sFolders *folders, sList *msgList) {
+void deleteFolderMain(sFolders *folders, sList *msgList) { //llama a borrar una carpeta
     char folderName[MAXLENGTH20];
     printf("Introduce el nombre de la carpeta: ");
     scanf(" %s", folderName);
@@ -144,7 +144,7 @@ void deleteFolderMain(sFolders *folders, sList *msgList) {
     saveOptions(folders);
 }
 
-void deleteMsgMainInFolder(sFolders *folders, sList *msgList) {
+void deleteMsgMainInFolder(sFolders *folders, sList *msgList) { //llama al delete mensaje a una carpeta
     char folderName[MAXLENGTH20];
     char messageName[MAXLENGTH50];
 
@@ -160,26 +160,16 @@ void deleteMsgMainInFolder(sFolders *folders, sList *msgList) {
     saveOptions(folders);
 }
 
-void createFolderMain(sFolders *folders) {
+void createFolderMain(sFolders *folders) { //llama al crear una carpeta
     char folderName[MAXLENGTH20];
-    // int Pass;
-    //    do {
     printf("Introduce el nombre de la carpeta: ");
     scanf("%s", folderName);
-    // readChain(folderName, MAXLENGTH20);
-    //        if (strstr(folderName, " ") == 0) {
-    //            Pass = FALSE;
-    //            printf("No se permiten espacios en el nombre\n");
-    //        } else {
-    //            Pass = TRUE;
-    //        }
-    //    } while (Pass != TRUE);
     createFolder(folderName, folders);
     jumpsInMsgOut(folders);
     saveOptions(folders);
 }
 
-void listMsgMain(sFolders *folders, sList *msgList) {
+void listMsgMain(sFolders *folders, sList *msgList) { //llama a listar todos los correos de una carpeta
     char folderName[MAXLENGTH20];
 
     printf("Introduce el nombre de la carpeta: ");
@@ -210,26 +200,6 @@ void menu(int option, sFolders *folders, sList *msgList) {
             //Borrar correo
             listMsgs("Outbox", msgList, folders);
             deleteMsgMain(folders, msgList);
-            //            printf("Introduce el nombre del correo:");
-            //            scanf(" %s", messageName);
-            //            deleteMessage(folders, messageName);
-            //            //            for (int i = 0; i < folders->numFolders; i++) {
-            //            //                eliminateJumpsMsg(folders, folders->folder[i].folderName);
-            //            //            }
-            //            jumpsInMsgOut(folders);
-            //            saveOptions(folders);
-            //openOptions(&folders);
-            //saveOptions(&folders);
-
-            //            for (int i = 0; i < numFolders; i++){
-            //                printf("%s", folders->folder[i].folderName);
-            //                printf("\n");
-            //                printf("%i", folders->folder[i].numMessages);
-            //                for (int j = 0; j < folders->folder[i].numMessages; j++){
-            //                   printf("%s", folders->folder[i].messageName[j].messageName); 
-            //                   printf("\n");
-            //                }
-            //            }
             break;
         case 5:
             //crearCarpeta

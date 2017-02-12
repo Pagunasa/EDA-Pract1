@@ -7,7 +7,7 @@
 #include "errors.h"
 
 
-void openOptions(sFolders *folders) {
+void openOptions(sFolders *folders) { //sirve para abrir el fichero de opciones y guardar su información
     char temp1[MAXLENGTH50] = "";
     char temp2[MAXLENGTH50] = "";
 
@@ -27,42 +27,13 @@ void openOptions(sFolders *folders) {
         fscanf(optionsFile, " %s %d ", temp1, &folders->messageID);
         fscanf(optionsFile, "%s", temp1);
         folders->numFolders = 0;
+        
         while (feof(optionsFile) == 0) {
-            //fscanf(optionsFile, "%s", folders.folder[i].folderName);
             fgets(temp1, MAXLENGTH50, optionsFile);
-            /* i++;
-             fgets(folders.folder[i].folderName, MAXLENGTH50, optionsFile);
-             printf("%s", folders.folder[i].folderName);
-             i++;*/
 
             if (strcmp(temp1, "\n") == 0 || strcmp(temp1, "\r\n") == 0) {
-                /*j = i;
-                fgets(temp1, MAXLENGTH50, optionsFile);
-                sscanf(temp1, "%s %s", temp2, strFinal);
-                i--;
-               // printf("%s \n", temp2);
-                
-                strcpy(temp1, folders.folder[i].folderName);
-                  
-                for (int i = 0; i <= j; i++){
-                    if(strcmp(folders.folder[i].folderName, temp1) == 0){
-                        fgets(folders.folder[i].messageName[e].messageName, MAXLENGTH50, optionsFile);
-                       // fgets(folders.folder[i].messageName[e], MAXLENGTH50, optionsFile);
-                        printf("%s",folders.folder[i].messageName[e].messageName);
-                        e++;
-                    }
-                }
-                
-                e = 0;*/
-            } else {
-                //printf("%s", temp1);
-                /*if (sscanf(temp1, "%s %s %s", temp2, strFinal, strFinal1)){
-                    if(strcmp(strFinal1, "Messages:") == 1){
-                         strcpy(folders.folder[i].folderName, temp1);
-                        printf("Pasando %s", folders.folder[i].folderName);
-                    } 
-                }*/
 
+            } else {
                 if (strstr(temp1, "Messages:") == NULL && strstr(temp1, "End") == NULL) {
                     if (strcmp(temp2, "") != 0) {
                         j = 0;
@@ -93,21 +64,12 @@ void openOptions(sFolders *folders) {
                         strcpy(folders->folder[i].folderName, temp1);
                         folders->folder[i].numMessages = 0;
                         folders->numFolders++;
-                        //eliminateJumps(folders);   
-
-
-                        //printf("%s", folders->folder[i].folderName);  
                     }
                 } else if (strstr(temp1, "Messages:") != NULL) {
                     sscanf(temp1, "%s", temp2);
-                    //strcat(temp2, "\r\n");
-                    //printf("%s \n", temp2);  
                 }
                 i++;
             }
-
-            //AAQUIII IVAAA
-
         }
     }
 
@@ -115,7 +77,7 @@ void openOptions(sFolders *folders) {
 
 }
 
-void saveOptions(sFolders *folders) {
+void saveOptions(sFolders *folders) { //Sirve para guardar la configuración con los cambios anteriormente echos
 
     char temp[MAXLENGTH50] = "";
     strcpy(temp, "");
@@ -131,7 +93,6 @@ void saveOptions(sFolders *folders) {
     }
     strcat(myTxt, "\n");
     for (int i = 0; i < folders->numFolders; i++) {
-        // eliminateJumps(folders);
         if (strcmp(folders->folder[i].folderName, "NULL") != 0) {
             strcat(temp, folders->folder[i].folderName);
             strcat(temp, " Messages: \n");
@@ -139,10 +100,10 @@ void saveOptions(sFolders *folders) {
             strcpy(temp, "");
             int numMsg = folders->folder[i].numMessages;
             for (int j = 0; j < numMsg; j++) {
-                if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") != 0) { //ESTA BIEN CREO
+                if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") != 0) { 
                     strcat(myTxt, folders->folder[i].messageName[j].messageName);
                     strcat(myTxt, "\n");
-                } else if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") == 0) { //  ESTO NSE PUEDE QUITAR
+                } else if (strcmp(folders->folder[i].messageName[j].messageName, "NULL") == 0) { 
                     numMsg++;
                 }
             }
@@ -159,7 +120,7 @@ void saveOptions(sFolders *folders) {
     fclose(fp);
 }
 
-void eliminateJumps(sFolders *folders) {
+void eliminateJumps(sFolders *folders) { //Elimina saltos de linias en carpetas
     for (int i = 0; i < folders->numFolders; i++) {
         for (int e = 0; e < strlen(folders->folder[i].folderName); e++) {
             if (folders->folder[i].folderName[e] == '\n' || folders->folder[i].folderName[e] == '\r') {
@@ -169,10 +130,9 @@ void eliminateJumps(sFolders *folders) {
     }
 }
 
-void eliminateJumpsMsg(sFolders *folders, char folderName[MAXLENGTH50]) {
+void eliminateJumpsMsg(sFolders *folders, char folderName[MAXLENGTH50]) { //ELimina saltos de linia en mensajes
     eliminateJumps(folders);
     for (int i = 0; i < folders->numFolders; i++) {
-        //for (int e = 0; e < strlen(folders->folder[i].folderName); e++) {
         if (strcmp(folderName, folders->folder[i].folderName) == 0) {
             for (int o = 0; o < folders->folder[i].numMessages; o++) {
                 for (int a = 0; a < strlen(folders->folder[i].messageName[o].messageName); a++) {
@@ -183,6 +143,5 @@ void eliminateJumpsMsg(sFolders *folders, char folderName[MAXLENGTH50]) {
                 }
             }
         }
-        //}
     }
 }

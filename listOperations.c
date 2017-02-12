@@ -5,7 +5,7 @@
 #include "message.h"
 #include "filesOperations.h"
 
-void listMsgs(char folderName[MAXLENGTH50], sList *msgList, sFolders *folders) {
+void listMsgs(char folderName[MAXLENGTH50], sList *msgList, sFolders *folders) { //Sirve para listar todos los mensajes de una carpeta 
     int chrono = 1, inFolder = 0;
     char messageName[MAXLENGTH50];
     for (int i = 0; i < folders->numFolders; i++) {
@@ -19,7 +19,7 @@ void listMsgs(char folderName[MAXLENGTH50], sList *msgList, sFolders *folders) {
                             msgList->lsMessages[a].messages.messageName) == 0) {
                         printf("%i-%s-%i-%s -> Ref: %s\n", chrono, msgList->lsMessages[a].messages.sender,
                                 strlen(msgList->lsMessages[a].messages.subject), msgList->lsMessages[a].messages.date.day,
-                                messageName);//msgList->lsMessages[a].messages.messageName
+                                messageName);
                         chrono++;
                         if (msgList->lsMessages[a].next == -1) {
                             a = MAXLENGTH18;
@@ -27,15 +27,12 @@ void listMsgs(char folderName[MAXLENGTH50], sList *msgList, sFolders *folders) {
                     }
                 }
             }
-            //i = folders->numFolders;
-        }//else if(inFolder == 0){
-        //            printf(COLOR_RED "No existe la carpeta\n" COLOR_RESET);
-        //        }
+        }
         inFolder = 0;
     }
 }
 
-void listAllMsgs(sList *msgList) {
+void listAllMsgs(sList *msgList) { //Sirve para listar todos los mensajes
     int chrono = 1;
     for (int a = 0; a < MAXLENGTH18; a++) {
         printf("%i-%s-%i-%s -> Ref: %s\n", chrono, msgList->lsMessages[a].messages.sender,
@@ -48,7 +45,7 @@ void listAllMsgs(sList *msgList) {
     }
 }
 
-void inicializeList(sList *msgList) {
+void inicializeList(sList *msgList) { //Inicializa la lista de mensajes para que este vacia
     msgList->empty = 0;
     msgList->first = -1;
 
