@@ -6,17 +6,9 @@
 #include "filesOperations.h"
 #include "errors.h"
 
-//void closeFile(FILE fp) {
-//    //fclose(fp);
-//}
-
-void editOptions(char newoptionsvalues) {
-    //    return "message";
-
-}
 
 void openOptions(sFolders *folders) {
-    char temp1[MAXLENGTH50];
+    char temp1[MAXLENGTH50] = "";
     char temp2[MAXLENGTH50] = "";
 
     int i = 0;
@@ -125,7 +117,7 @@ void openOptions(sFolders *folders) {
 
 void saveOptions(sFolders *folders) {
 
-    char temp[MAXLENGTH50];
+    char temp[MAXLENGTH50] = "";
     strcpy(temp, "");
     strcpy(myTxt, "");
 
@@ -194,44 +186,3 @@ void eliminateJumpsMsg(sFolders *folders, char folderName[MAXLENGTH50]) {
         //}
     }
 }
-
-FILE* OpenFile(char filename[MAXLENGTH50]) {
-
-    /* FILE *fs;
-    
-     fs = fopen(filename,"wt");
-    
-     if (fs == NULL){ //Comprobamos si el archivo se ha abierto y en su caso negativo avisamos al usuario
-         printf("Error al abrir el fichero\n");
-         return fs;
-     } else {
-         return fs;
-     }*/
-}
-
-//AAQUIII IVAAA
-
-//for (int j = 0; j < i; j++){
-// if(strcmp(options.folders[i].folderName, )){
-//   printf("Hola");
-// }     
-// }
-/*for (int j = 0; j < i; j++){
-   if(strcmp(options.folders[j].folderName, options.folders[i].folderName) ==  0
-     || strcmp(options.folders[j].folderName, "Messages:") == 0){
-                   i--;
-                   printf("%s \n", options.folders[i].folderName);
-
-                   //while(feof(optionsFile) == 0){
-                   //        fscanf(optionsFile, "%s", options.folders[i].folderName);
-                   //        printf("%s \n", options.folders[i].folderName); 
-                   //    }
-                       
-                   }
-   }*/
-//for (int i = 0; i < 2; i++){
-//printf("%s", folders->folder[i].folderName);  
-//     for (int j = 0; j < 2; j++){
-//printf("%s", folders->folder[i].messageName[j].messageName);  
-//     }
-// }

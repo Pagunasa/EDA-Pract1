@@ -47,11 +47,6 @@ void listAllMsgs(sList *msgList) {
     }
 }
 
-listFolder() {
-    //  return"Array of folders";
-
-}
-
 void inicializeList(sList *msgList) {
     msgList->empty = 0;
     msgList->first = -1;

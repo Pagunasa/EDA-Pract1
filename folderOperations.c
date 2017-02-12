@@ -6,7 +6,7 @@
 #include "errors.h"
 
 void deleteFolder(char folderName[MAXLENGTH50], sFolders *folders, sList *msgList) {
-    int confirmation;
+    int confirmation = 2;
     int pass = 1, exists = 0, repeated = 0;
 
     typedef struct {

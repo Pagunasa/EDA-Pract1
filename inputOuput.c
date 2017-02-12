@@ -2,18 +2,6 @@
 #include <stdlib.h>
 #include "message.h"
 
-void inputInt(int integer){
-    
-}
-outputPass(){
-//    return "OK";
-}
-
-outputError(){
-//    return "Error";
-}
-
-
 int readChain(char *cad, int n) { 
     int i, c; 
 
@@ -40,8 +28,4 @@ int readChain(char *cad, int n) {
 
     return 1; 
 }
-
-void inputString(char caracter){
-}
-
 

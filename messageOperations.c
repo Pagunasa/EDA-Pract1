@@ -6,10 +6,6 @@
 #include "errors.h"
 #include "filesOperations.h"
 
-void deleteMsg(int msgID) {
-    //return "Delete Message";
-}
-
 void showMsg(sList *msgList, char messageName[MAXLENGTH50]) {
     //    for (int i = 0; i < folders->numFolders; i++) {
     for (int e = 0; e < MAXLENGTH18; e++) {
