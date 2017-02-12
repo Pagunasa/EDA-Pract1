@@ -1,3 +1,13 @@
+/* 
+ * File:   filesOperations.c
+ *  * Autors:
+    Guillem Martinez 196310
+    Oriol Bernier 193518
+    Sandra Rodriguez 192860
+ * Funcionalidades para cargar y guardar las opciones y eeliminar saltos de linias para las comparaciones
+ * Created on 24 de enero de 2017, 12:48
+ */
+
 
 #include <stdio.h>
 #include <stdlib.h>

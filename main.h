@@ -1,7 +1,10 @@
 /* 
  * File:   main.h
- * Author: u140172
- *
+ * Autors:
+    Guillem Martinez 196310
+    Oriol Bernier 193518
+    Sandra Rodriguez 192860
+ * Definicon de las variables prototipo del main y de su menu.
  * Created on 24 de enero de 2017, 12:48
  */
 

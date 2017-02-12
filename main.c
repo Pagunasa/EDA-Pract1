@@ -1,7 +1,10 @@
 /* 
  * File:   main.c
- * Author: u140172
- *
+  *  * Autors:
+    Guillem Martinez 196310
+    Oriol Bernier 193518
+    Sandra Rodriguez 192860
+ * Main del programa donde se usan las funciones y definicion de funciones "Main" para dejar mas limpio el menu
  * Created on 18 de enero de 2017, 11:07
  */
 

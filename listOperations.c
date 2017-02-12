@@ -1,3 +1,14 @@
+/* 
+ * File:   listOperations.c
+ *  * Autors:
+    Guillem Martinez 196310
+    Oriol Bernier 193518
+    Sandra Rodriguez 192860
+ * Funcionalidades para listar y iniicalizar la lista de mensajes
+ * Created on 24 de enero de 2017, 12:48
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
