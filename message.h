@@ -18,8 +18,6 @@ int numMsg;
 //time_t rawtime;
 //struct tm * timeinfo;
 
-
-
 char name[MAXLENGTH50];
 char myTxt[MAXLENGTH1000];
 
@@ -53,6 +51,17 @@ typedef struct{
     int first;
     int empty;
 }sList; 
+
+void showMsg(sList *msgList, char messageName[MAXLENGTH50]);
+
+void addMessageToList(sMessage *message, sList *msgList);
+
+void deleteMessageFromList(sList *msgList, char messageName[MAXLENGTH50]);
+
+void searchInMsg(sList *msgList, char searchParam[MAXLENGTH50]);
+
+
+
 
 #endif	/* MESSAGE_H */
 

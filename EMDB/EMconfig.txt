@@ -1,4 +1,4 @@
-messageID: 18
+messageID: 19
 
 Folders:
 Inbox
@@ -12,6 +12,7 @@ Inbox Messages:
 
 Outbox Messages: 
 1
+19_EDA1_email
 
 
 Pagunasa Messages: 

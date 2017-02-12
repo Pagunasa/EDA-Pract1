@@ -102,7 +102,7 @@ void createMsgMain(sFolders *folders, sList *msgList) {
         sMessage message;
         inputNewMsg(&message, folders, "Outbox");
         jumpsInMsgOut(folders);
-        addMessageToList(message, msgList);
+        addMessageToList(&message, msgList);
         saveOptions(folders);
     } else {
         printf("Numero de mensajes maximos superado!! \n");
@@ -120,7 +120,7 @@ void createMsgMainInFolder(sFolders *folders, sList *msgList) {
         sMessage message;
         inputNewMsg(&message, folders, folderName);
         jumpsInMsgOut(folders);
-        addMessageToList(message, msgList);
+        addMessageToList(&message, msgList);
         saveOptions(folders);
     } else {
         printf("Numero de mensajes maximos superado!! \n");
@@ -129,8 +129,8 @@ void createMsgMainInFolder(sFolders *folders, sList *msgList) {
 
 void deleteMsgMain(sFolders *folders, sList *msgList) {
     char messageName[MAXLENGTH50];
-    printf("Introduce el nombre del correo:");
-    scanf(" %s", messageName);
+    printf("Introduce el nombre del correo: ");
+    scanf("%s", messageName);
     deleteMessage(folders, msgList, messageName, "Outbox");
     jumpsInMsgOut(folders);
     saveOptions(folders);
@@ -138,7 +138,7 @@ void deleteMsgMain(sFolders *folders, sList *msgList) {
 
 void deleteFolderMain(sFolders *folders, sList *msgList) {
     char folderName[MAXLENGTH20];
-    printf("Introduce el nombre de la carpeta:");
+    printf("Introduce el nombre de la carpeta: ");
     scanf(" %s", folderName);
     deleteFolder(folderName, folders, msgList);
     saveOptions(folders);
@@ -148,11 +148,11 @@ void deleteMsgMainInFolder(sFolders *folders, sList *msgList) {
     char folderName[MAXLENGTH20];
     char messageName[MAXLENGTH50];
 
-    printf("Introduce el nombre de la carpeta:");
+    printf("Introduce el nombre de la carpeta: ");
     scanf(" %s", folderName);
     listMsgs(folderName, msgList, folders);
 
-    printf("Introduce el nombre del correo:");
+    printf("Introduce el nombre del correo: ");
     scanf(" %s", messageName);
     deleteMessage(folders, msgList, messageName, folderName);
 
@@ -164,7 +164,7 @@ void createFolderMain(sFolders *folders) {
     char folderName[MAXLENGTH20];
     // int Pass;
     //    do {
-    printf("Introduce el nombre de la carpeta:");
+    printf("Introduce el nombre de la carpeta: ");
     scanf("%s", folderName);
     // readChain(folderName, MAXLENGTH20);
     //        if (strstr(folderName, " ") == 0) {
@@ -182,7 +182,7 @@ void createFolderMain(sFolders *folders) {
 void listMsgMain(sFolders *folders, sList *msgList) {
     char folderName[MAXLENGTH20];
 
-    printf("Introduce el nombre de la carpeta:");
+    printf("Introduce el nombre de la carpeta: ");
     scanf("%s", folderName);
 
     listMsgs(folderName, msgList, folders);

@@ -6,9 +6,24 @@
  */
 
 #include <stdio.h>
+#include "filesOperations.h"
+#include "message.h"
 #include <stdlib.h>
 #ifndef MAIN_H
 #define	MAIN_H
+
+void jumpsInMsgOut(sFolders *folders);
+void searchInMain(sList *msgList);
+void showMsgMain(sFolders *folders, sList *msgList);
+void createMsgMain(sFolders *folders, sList *msgList);
+void createMsgMainInFolder(sFolders *folders, sList *msgList);
+void deleteMsgMain(sFolders *folders, sList *msgList);
+void deleteFolderMain(sFolders *folders, sList *msgList);
+void deleteMsgMainInFolder(sFolders *folders, sList *msgList);
+void createFolderMain(sFolders *folders);
+void listMsgMain(sFolders *folders, sList *msgList);
+void menu(int option, sFolders *folders, sList *msgList);
+
 
 void writeMenu() {
     printf("Bienvenidos a correo \n");
